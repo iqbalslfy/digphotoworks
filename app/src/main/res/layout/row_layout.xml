@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="8dp"
+    android:hardwareAccelerated="false"
+    android:largeHeap="true"
+    android:foreground="?attr/selectableItemBackground"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgProduk"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/apollo"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/txtNamaItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgProduk"
+            android:textSize="18dp"
+            android:paddingLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Paket 1"
+            android:textStyle="bold"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:id="@+id/txtHargaItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNamaItem"
+            android:text="Rp. 500.000"
+            android:paddingLeft="10dp"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/txtDeskripsiItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtHargaItem"
+            android:paddingLeft="10dp"
+            android:inputType="textMultiLine"
+            android:text="Lorem ipsum dolor sit amet, wisi lorem tempor eu rutrum massa, duis felis quis magna nullam nulla pharetra, pede ut pellentesque nulla varius quisque. Nulla a vel erat, dolor vestibulum at nec commodo et sit, ut lacinia id mauris hac. Faucibus morbi elit sed, nulla tincidunt nec lacus sit dolor quam, vivamus dolor pulvinar, montes amet et elementum pellentesque amet aliquet. Sed dolor, arcu ultrices lorem mollis nostra gravida. Sit varius, metus nullam sapiente, adipiscing a, pharetra eget laoreet justo malesuada. Tellus ultrices, ut nibh hymenaeos maecenas pharetra, aliquam dictum mollis per sit sit fermentum, duis excepteur mauris etiam. Praesent quam nunc sodales tempus, sed nullam enim eget, pellentesque eu turpis, malesuada quis tincidunt wisi, neque ante tincidunt nulla. Ac pulvinar sed amet wisi. Justo mauris, amet pretium dignissim mi sed metus aliquam. Ultrices quisque, non aenean vel iaculis, ligula a nullam ac. Porttitor risus nulla, in elementum purus at."
+            android:maxLines="3"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btnPesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtHargaItem"
+            android:layout_alignParentRight="true"
+            android:text="Pesan"
+
+            android:textStyle="bold"
+            android:textColor="@color/aice_blue"
+            android:background="@drawable/ripple_effect"
+            android:inputType="textCapWords"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+

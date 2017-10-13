@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.mascitra.digphotoworks.activity.Pemesanan">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/ket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data Lengkap Pemesan"
+                    android:padding="10dp"/>
+
+                <View
+                    android:id="@+id/lines"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/ket"
+                    android:background="@color/lines"/>
+
+                <EditText
+                    android:layout_below="@+id/lines"
+                    android:id="@+id/et_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/md_edit_text"
+                    android:hint="Nama Lengkap"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:inputType="textCapWords"
+                    />
+
+
+                <EditText
+                    android:id="@+id/et_no_telp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/md_edit_text"
+                    android:hint="No. Telepon"
+                    android:inputType="number"
+                    android:layout_below="@+id/et_nama"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:maxLength="12"/>
+
+                <TextView
+                    android:layout_below="@+id/et_no_telp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Pilih waktu : "
+                    android:layout_margin="5dp"
+                    android:background="@drawable/md_edit_text"/>
+<RadioGroup
+    android:layout_below="@+id/et_no_telp"
+    android:id="@+id/rg_option"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:orientation="horizontal"
+    >
+    <RadioButton
+        android:id="@+id/rb_pagi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:layout_margin="5dp"
+        android:text="Pagi"/>
+
+    <RadioButton
+        android:id="@+id/rb_sore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_no_telp"
+        android:layout_toRightOf="@+id/rb_pagi"
+        android:layout_margin="5dp"
+        android:text="Siang"/>
+</RadioGroup>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/ket2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rincian Data Pemesanan"
+                    android:padding="10dp"/>
+
+                <View
+                    android:id="@+id/lines2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/ket2"
+                    android:background="@color/lines"/>
+
+                <TextView
+                    android:layout_below="@+id/lines2"
+                    android:id="@+id/tv_nm_paket_p"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Paket"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_isi_paket_p"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contoh Nama Paket"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/tv_nm_paket_p"/>
+
+                <TextView
+                    android:id="@+id/tv_jml_tambahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:text="Jumlah Tambahan"
+                    android:layout_below="@+id/tv_isi_paket_p"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_isi_jml_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:padding="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignBaseline="@+id/textView"
+                    android:layout_alignBottom="@+id/textView"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Orang"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/tv_jml_tambahan"
+                    android:layout_toRightOf="@+id/tv_isi_jml_p"
+                    android:id="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/tv_hrg_standart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:text="Harga Standart"
+                    android:layout_below="@+id/tv_isi_jml_p"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/rp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_below="@+id/tv_hrg_standart"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_isi_hrg_standart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1,000,000"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_below="@+id/tv_hrg_standart"
+                    android:layout_toRightOf="@+id/rp"/>
+
+                <TextView
+                    android:id="@+id/tv_hrg_tambahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:text="Tambahan"
+                    android:layout_below="@+id/tv_isi_hrg_standart"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/rpt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_below="@+id/tv_hrg_tambahan"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_isi_hrg_tambahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1,000,000"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_below="@+id/tv_hrg_tambahan"
+                    android:layout_toRightOf="@+id/rpt"/>
+
+                <View
+                    android:id="@+id/lines3"
+                    android:layout_width="340dp"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tv_isi_hrg_tambahan"
+                    android:background="@color/lines"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/tv_total_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lines3"
+                    android:text="Total"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_total_biaya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lines3"
+                    android:layout_toRightOf="@+id/tv_total_p"
+                    android:text="1,000,000"
+                    android:padding="10dp"
+                    android:textSize="20dp"
+                    android:layout_margin="5dp"
+                    android:gravity="end"/>
+
+                <Button
+                    android:id="@+id/btnSubmit_p"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_total_p"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Submit"
+                    android:textAllCaps="true"
+                    android:background="@drawable/ripple_effect"
+                    android:textColor="@color/aice_blue"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>
+

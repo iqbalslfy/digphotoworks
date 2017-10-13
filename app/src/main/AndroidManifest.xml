@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mascitra.digphotoworks">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcer"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/Splashscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
+        <activity android:name=".activity.PhotoStudio" />
+        <activity android:name=".activity.Paket" />
+        <activity android:name=".activity.Transaksi" />
+        <activity android:name=".activity.Gallery" />
+        <activity android:name=".activity.About" />
+        <activity android:name=".activity.PromoActivity" />
+        <activity android:name=".activity.Preweding" />
+        <activity
+            android:name=".activity.Pencarian"
+            android:theme="@style/NoActionBar." />
+        <activity android:name=".activity.Make_up" />
+        <activity android:name=".activity.Weding" />
+        <activity android:name=".activity.Video" />
+        <activity android:name=".activity.Pemesanan" />
+        <activity android:name=".activity.TransaksiTwo" />
+        <activity android:name=".activity.DetailPromo" />
+        <activity android:name=".activity.PemesananVersiTwo"></activity>
+    </application>
+
+</manifest>

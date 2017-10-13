@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3498db</color>
+    <color name="colorPrimaryDark">#2980b9</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="padding_slide">#00000000</color>
+    <color name="chambray">#3A539B</color>
+    <color name="jacksons_purple">#1F3A93</color>
+    <color name="aice_blue">#E4F1FE</color>
+    <color name="white">#FFFF</color>
+    <color name="ebony_clay">#22313F</color>
+    <color name="jelly_bean">#2574A9</color>
+    <color name="black_splash">#000000</color>
+    <color name="junggle_green">#26C281</color>
+    <color name="button">#049372</color>
+    <color name="lines">#D6CFCFCF</color>
+</resources>

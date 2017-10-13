@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DiG Photoworks</string>
+    <string name="title_home">Home</string>
+    <string name="title_booking">Booking</string>
+    <string name="title_inbox">Inbox</string>
+    <string name="title_activity_pemesanan">Pemesanan</string>
+</resources>
