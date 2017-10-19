@@ -9,6 +9,7 @@ import android.app.Application;
 public class AppsCore extends Application{
     public static final String BASE_URL = "http://188.166.179.34:8080/";
     public static final String BASE_IMAGE = "http://188.166.179.34:8080/";
+    public static final String INSTAGRAM = "https://www.instagram.com/graphql/query/";
     public static final String TOKEN= "b7ytbe2DgHhpW4ss1wzR1NtMWpLROxSFHgoe64bl";
     //    public static final String GOOGLE_API_KEY = "AIzaSyCqk5uuqfG8Ska3ENzJHe5PNGTtNTXhvpk";
     public static final String ERROR_NETWORK = "Error. Please check your internet connection";
