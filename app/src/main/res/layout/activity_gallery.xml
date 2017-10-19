@@ -6,12 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.mascitra.digphotoworks.activity.Gallery">
 
-    <WebView
-        android:id="@+id/webIG"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layoutMode="opticalBounds">
 
-    </WebView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <GridView
+                android:id="@+id/gridview"
+                android:layout_width="match_parent"
+                android:layout_height="518dp"
+                android:columnWidth="90dp"
+                android:gravity="center"
+                android:horizontalSpacing="10dp"
+                android:numColumns="auto_fit"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="10dp">
+
+            </GridView>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
