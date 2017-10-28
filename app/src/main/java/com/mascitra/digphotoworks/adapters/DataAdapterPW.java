@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.mascitra.digphotoworks.Click.ItemClickListener;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.activity.TransaksiTwo;
+import com.mascitra.digphotoworks.activities.TransaksiTwo;
 import com.mascitra.digphotoworks.product.Product;
 
 import java.util.ArrayList;

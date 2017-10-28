@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.mascitra.digphotoworks.Click.ItemClickListener;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.activity.DetailPromo;
+import com.mascitra.digphotoworks.activities.DetailPromo;
 import com.mascitra.digphotoworks.product.Promo;
 
 import java.util.ArrayList;
