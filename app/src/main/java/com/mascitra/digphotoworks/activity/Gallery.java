@@ -27,6 +27,8 @@ import com.mascitra.digphotoworks.responses.InstagramResponse;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +38,7 @@ public class Gallery extends AppCompatActivity {
     private ProgressDialog progressBar;
     ImageAdapter imageAdapter;
     GridView gridview;
+    String endCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class Gallery extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imageAdapter = new ImageAdapter(this);
-
+        ButterKnife.bind(this);
         loadInsatgram();
 
         gridview = (GridView) findViewById(R.id.gridview);
@@ -59,13 +62,19 @@ public class Gallery extends AppCompatActivity {
             }
         });
 
+    }
 
+    @OnClick(R.id.button)
+    void nextPost()
+    {
+        loadInsatgramNext();
     }
 
     public void loadInsatgram()
     {
         Call<InstagramResponse> call;
-        call = RetrofitApi.getInstance(true).getApiService("").instagram();
+        String variables = "{\"id\":\"29614503\",\"first\":12}";
+        call = RetrofitApi.getInstance(true).getApiService("").instagram(variables);
         call.enqueue(new Callback<InstagramResponse>() {
             @Override
             public void onResponse(Call<InstagramResponse> call, Response<InstagramResponse> response) {
@@ -77,6 +86,34 @@ public class Gallery extends AppCompatActivity {
                     }
                     Log.d("isine",imageAdapter.getCount()+"");
                     gridview.invalidateViews();
+                    endCursor = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getPageInfo().getEndCursor();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<InstagramResponse> call, Throwable t) {
+                Toast.makeText(Gallery.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void loadInsatgramNext()
+    {
+        Call<InstagramResponse> call;
+        String variables = "{\"id\":\"29614503\",\"first\":12,\"after\":\""+endCursor+"\"}";
+        call = RetrofitApi.getInstance(true).getApiService("").instagram(variables);
+        call.enqueue(new Callback<InstagramResponse>() {
+            @Override
+            public void onResponse(Call<InstagramResponse> call, Response<InstagramResponse> response) {
+                if(response.isSuccessful()) {
+                    List<Edge> edges = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getEdges();
+                    for (int i = 0; i < edges.size();i++){
+                        String thumbnail_src = edges.get(i).getNode().getThumbnailSrc();
+                        imageAdapter.addImage(thumbnail_src);
+                    }
+                    Log.d("isine",imageAdapter.getCount()+"");
+                    gridview.invalidateViews();
+                    endCursor = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getPageInfo().getEndCursor();
                 }
             }
 
