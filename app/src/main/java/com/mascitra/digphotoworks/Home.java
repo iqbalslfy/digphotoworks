@@ -13,16 +13,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.mascitra.digphotoworks.activity.About;
-import com.mascitra.digphotoworks.activity.Gallery;
-import com.mascitra.digphotoworks.activity.Make_up;
-import com.mascitra.digphotoworks.activity.Paket;
-import com.mascitra.digphotoworks.activity.PhotoStudio;
-import com.mascitra.digphotoworks.activity.Preweding;
-import com.mascitra.digphotoworks.activity.PromoActivity;
-import com.mascitra.digphotoworks.activity.Video;
-import com.mascitra.digphotoworks.activity.Weding;
-import com.mascitra.digphotoworks.adapter.ViewPagerAdapter;
+import com.mascitra.digphotoworks.activities.About;
+import com.mascitra.digphotoworks.activities.Gallery;
+import com.mascitra.digphotoworks.activities.Make_up;
+import com.mascitra.digphotoworks.activities.Paket;
+import com.mascitra.digphotoworks.activities.PhotoStudio;
+import com.mascitra.digphotoworks.activities.Preweding;
+import com.mascitra.digphotoworks.activities.PromoActivity;
+import com.mascitra.digphotoworks.activities.Video;
+import com.mascitra.digphotoworks.activities.Weding;
+import com.mascitra.digphotoworks.adapters.ViewPagerAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
