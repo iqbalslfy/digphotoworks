@@ -1,35 +1,29 @@
-package com.mascitra.digphotoworks.adapter;
+package com.mascitra.digphotoworks.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mascitra.digphotoworks.Click.ItemClickListener;
-import com.mascitra.digphotoworks.Home;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.activity.Transaksi;
+import com.mascitra.digphotoworks.activity.TransaksiTwo;
 import com.mascitra.digphotoworks.product.Product;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by SONY on 26/09/2017.
+ * Created by SONY on 11/10/2017.
  */
 
-class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
+class RecyclerViewHolderPW extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
     public ImageView imgDeskripsi;
     public TextView paket;
     public TextView harga;
@@ -39,7 +33,7 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClick
     private ItemClickListener itemClickListener;
 
 
-    public RecyclerViewHolder(View itemView) {
+    public RecyclerViewHolderPW(View itemView) {
         super(itemView);
         imgDeskripsi = itemView.findViewById(R.id.imgProduk);
         paket = itemView.findViewById(R.id.txtNamaItem);
@@ -66,14 +60,14 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClick
         return true;
     }
 
-    }
+}
 
-    public class DataAdapter extends RecyclerView.Adapter<RecyclerViewHolder>{
+public class DataAdapterPW extends RecyclerView.Adapter<RecyclerViewHolder>{
 
     private List<Product> productList = new ArrayList<Product>();
     private Context context;
 
-    public DataAdapter(List<Product> productList, Context context) {
+    public DataAdapterPW(List<Product> productList, Context context) {
         this.productList = productList;
         this.context = context;
     }
@@ -85,12 +79,10 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClick
         View view = inflater.inflate(R.layout.row_layout,parent,false);
 
         return new RecyclerViewHolder(view);
-
     }
 
-
     @Override
-    public void onBindViewHolder(final RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.imgDeskripsi.setImageResource(productList.get(position).getGambarID());
         holder.paket.setText(productList.get(position).getPaket());
         holder.harga.setText(productList.get(position).getHarga());
@@ -104,7 +96,7 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClick
 
                 } else {
 
-                    Intent intent = new Intent(context, Transaksi.class);
+                    Intent intent = new Intent(context, TransaksiTwo.class);
                     Bundle b = new Bundle();
 
                     b.putString("paket", productList.get(pos).getPaket());
@@ -117,16 +109,10 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClick
                 }
             }
         });
-
-
     }
-
 
     @Override
     public int getItemCount() {
         return productList.size();
     }
-
 }
-
-

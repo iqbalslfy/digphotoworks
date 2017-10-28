@@ -1,4 +1,4 @@
-package com.mascitra.digphotoworks.adapter;
+package com.mascitra.digphotoworks.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
-import com.mascitra.digphotoworks.AppsCore;
 
 import java.util.ArrayList;
 
