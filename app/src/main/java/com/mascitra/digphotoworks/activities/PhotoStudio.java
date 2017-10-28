@@ -1,23 +1,33 @@
 package com.mascitra.digphotoworks.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapters.DataAdapter;
-import com.mascitra.digphotoworks.product.Product;
+import com.mascitra.digphotoworks.adapters.ProductAdapter;
+import com.mascitra.digphotoworks.models.Product;
+import com.mascitra.digphotoworks.networks.RetrofitApi;
+import com.mascitra.digphotoworks.responses.BaseResponse;
+import com.mascitra.digphotoworks.responses.ProductResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PhotoStudio extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private DataAdapter dataAdapter;
+    private ProductAdapter productAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Product> productList = new ArrayList<Product>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +41,42 @@ public class PhotoStudio extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        dataAdapter = new DataAdapter(productList, this);
-        recyclerView.setAdapter(dataAdapter);
+        productAdapter = new ProductAdapter(this, new ArrayList<Product>(0), new ProductAdapter.ProductItemListener() {
+            @Override
+            public void onPostClick(Product id) {
+                Intent myIntent = new Intent(PhotoStudio.this, Transaksi.class);
+                startActivity(myIntent);
+            }
+        });
+        recyclerView.setAdapter(productAdapter);
 
-        tampilProduct();
+        loadProduct();
 
+    }
+
+    public void loadProduct() {
+        Call<BaseResponse<ProductResponse>> call;
+        call = RetrofitApi.getInstance().getApiService("").photoStudio();
+        call.enqueue(new Callback<BaseResponse<ProductResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<ProductResponse>> call, Response<BaseResponse<ProductResponse>> response) {
+                if(response.isSuccessful()) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<ProductResponse>> call, Throwable t) {
+                Toast.makeText(PhotoStudio.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -50,13 +84,5 @@ public class PhotoStudio extends AppCompatActivity {
 
     }
 
-    private void tampilProduct() {
-        productList.add(new Product(R.drawable.paket4, "Paket 1", "350000", "yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te."));
-        productList.add(new Product(R.drawable.paket2, "Paket 2", "150000", "Lorem ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te."));
-        productList.add(new Product(R.drawable.paket3, "Paket 3", "250000", "amber ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te."));
-        productList.add(new Product(R.drawable.paket4, "Paket 4", "350000", "iqbal ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te."));
-        productList.add(new Product(R.drawable.paket5, "Paket 5", "150000", "amber ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te."));
-        productList.add(new Product(R.drawable.paket4, "Paket 6", "300000", "iqbal ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te.yofan ipsum dolor sit amet, ne meis soleat probatus mei. Velit adipiscing ad qui. An qui regione integre intellegam. Eu quo enim agam adipiscing, enim utinam dissentiunt eam ex. Et sed apeirian forensibus, id mel semper minimum phaedrum. Ad sumo ancillae molestie vis, summo percipit tractatos vel te."));
-    }
 
 }
