@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.mascitra.digphotoworks.activity.Pemesanan">
+    tools:context="com.mascitra.digphotoworks.activities.Pemesanan">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

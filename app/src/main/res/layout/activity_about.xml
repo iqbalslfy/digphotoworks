@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_splash"
-    tools:context="com.mascitra.digphotoworks.activity.About">
+    tools:context="com.mascitra.digphotoworks.activities.About">
 
     <ImageView
         android:id="@+id/imglogoabout"
