@@ -49,7 +49,7 @@ public class Gallery extends AppCompatActivity {
 
         imageAdapter = new ImageAdapter(this);
         ButterKnife.bind(this);
-        loadInsatgram();
+        loadInsatgram(false);
 
         gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(imageAdapter);
@@ -67,40 +67,18 @@ public class Gallery extends AppCompatActivity {
     @OnClick(R.id.button)
     void nextPost()
     {
-        loadInsatgramNext();
+        loadInsatgram(true);
     }
 
-    public void loadInsatgram()
+    public void loadInsatgram(boolean next)
     {
         Call<InstagramResponse> call;
-        String variables = "{\"id\":\"29614503\",\"first\":12}";
-        call = RetrofitApi.getInstance(true).getApiService("").instagram(variables);
-        call.enqueue(new Callback<InstagramResponse>() {
-            @Override
-            public void onResponse(Call<InstagramResponse> call, Response<InstagramResponse> response) {
-                if(response.isSuccessful()) {
-                    List<Edge> edges = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getEdges();
-                    for (int i = 0; i < edges.size();i++){
-                        String thumbnail_src = edges.get(i).getNode().getThumbnailSrc();
-                        imageAdapter.addImage(thumbnail_src);
-                    }
-                    Log.d("isine",imageAdapter.getCount()+"");
-                    gridview.invalidateViews();
-                    endCursor = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getPageInfo().getEndCursor();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<InstagramResponse> call, Throwable t) {
-                Toast.makeText(Gallery.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void loadInsatgramNext()
-    {
-        Call<InstagramResponse> call;
-        String variables = "{\"id\":\"29614503\",\"first\":12,\"after\":\""+endCursor+"\"}";
+        String variables = "";
+        if (next){
+            variables = "{\"id\":\"29614503\",\"first\":12,\"after\":\""+endCursor+"\"}";
+        }else{
+            variables = "{\"id\":\"29614503\",\"first\":12}";
+        }
         call = RetrofitApi.getInstance(true).getApiService("").instagram(variables);
         call.enqueue(new Callback<InstagramResponse>() {
             @Override
