@@ -1,4 +1,4 @@
-package com.mascitra.digphotoworks.activity;
+package com.mascitra.digphotoworks.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,8 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapter.DataAdapter;
-import com.mascitra.digphotoworks.adapter.DataAdapterPW;
+import com.mascitra.digphotoworks.adapters.DataAdapterPW;
 import com.mascitra.digphotoworks.product.Product;
 
 import java.util.ArrayList;

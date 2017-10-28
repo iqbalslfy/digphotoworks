@@ -1,26 +1,20 @@
-package com.mascitra.digphotoworks.activity;
+package com.mascitra.digphotoworks.activities;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapter.ImageAdapter;
+import com.mascitra.digphotoworks.adapters.ImageAdapter;
 import com.mascitra.digphotoworks.models.instagrams.Edge;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
 import com.mascitra.digphotoworks.responses.InstagramResponse;

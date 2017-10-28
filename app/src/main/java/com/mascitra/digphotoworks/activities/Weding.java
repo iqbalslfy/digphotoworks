@@ -1,4 +1,4 @@
-package com.mascitra.digphotoworks.activity;
+package com.mascitra.digphotoworks.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapter.DataAdapter;
-import com.mascitra.digphotoworks.adapter.DataAdapterPW;
+import com.mascitra.digphotoworks.adapters.DataAdapterPW;
 import com.mascitra.digphotoworks.product.Product;
 
 import java.util.ArrayList;

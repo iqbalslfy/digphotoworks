@@ -1,4 +1,4 @@
-package com.mascitra.digphotoworks.activity;
+package com.mascitra.digphotoworks.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,19 +13,23 @@ import android.widget.Toast;
 
 import com.mascitra.digphotoworks.R;
 
-public class TransaksiTwo extends AppCompatActivity implements View.OnClickListener {
+public class Transaksi extends AppCompatActivity implements View.OnClickListener {
+
     TextView tvpaket,tvharga,tvhargaAwal,tvdetail,tvtambahan,tvHasilFinal,tvHasilFinal2;
-    ImageView img;
+    ImageView  img;
     TextView jmlText;
     ImageButton btnMin,BtnPlus;
     Button btnPesan;
     Integer jmlAngka,v2,v3,Tambahan,hargaAwal,Total,Total2;
 
     String hasil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaksi_two);
+        setContentView(R.layout.activity_transaksi);
+
+        Bundle bundle = getIntent().getExtras();
 
         tvpaket = (TextView) findViewById(R.id.txtPaketDetail);
         tvharga = (TextView) findViewById(R.id.txtHargaItemDetail);
@@ -43,21 +47,41 @@ public class TransaksiTwo extends AppCompatActivity implements View.OnClickListe
         btnMin = (ImageButton)findViewById(R.id.btnMin);
         BtnPlus = (ImageButton)findViewById(R.id.btnPlus);
         btnPesan = (Button)findViewById(R.id.btnSubmit);
+        tvpaket.setText(bundle.getCharSequence("paket"));
+        tvharga.setText(bundle.getCharSequence("harga"));
+        tvhargaAwal.setText(bundle.getCharSequence("harga"));
+        tvHasilFinal.setText(bundle.getCharSequence("harga"));
+        tvHasilFinal2.setText(bundle.getCharSequence("harga"));
+        tvdetail.setText(bundle.getCharSequence("deskripsi"));
 
         btnMin.setOnClickListener(this);
         BtnPlus.setOnClickListener(this);
         btnPesan.setOnClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle bundle = getIntent().getExtras();
-        tvpaket.setText(bundle.getCharSequence("paket"));
-        tvharga.setText(bundle.getCharSequence("harga"));
-        tvhargaAwal.setText(bundle.getCharSequence("harga"));
-        tvHasilFinal.setText(bundle.getCharSequence("harga"));
-        tvHasilFinal2.setText(bundle.getCharSequence("harga"));
 
     }
 
+    void decimal(){
+        double hrg_awl = Double.parseDouble(tvharga.getText().toString());
+        double hrg_awl2 = Double.parseDouble(tvhargaAwal.getText().toString());
+        double hrg_tmbahan = Double.parseDouble(tvtambahan.getText().toString());
+        double total1 = Double.parseDouble(tvHasilFinal.getText().toString());
+
+
+        String hrg_awls = String.format("%,.0f", hrg_awl).replaceAll(",", ".");
+        String hrg_awls2 = String.format("%,.0f", hrg_awl2).replaceAll(",", ".");
+        String hrg_tmbahans = String.format("%,.0f", hrg_tmbahan).replaceAll(",", ".");
+        String total1s = String.format("%,.0f", total1).replaceAll(",", ".");
+
+
+        tvharga.setText(hrg_awls);
+        tvhargaAwal.setText(hrg_awls2);
+        tvtambahan.setText(hrg_tmbahans);
+        tvHasilFinal.setText(total1s);
+        tvHasilFinal2.setText(total1s);
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -126,6 +150,7 @@ public class TransaksiTwo extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
     @Override
     public void onClick(View view) {
         if (view == btnMin){
@@ -145,7 +170,9 @@ public class TransaksiTwo extends AppCompatActivity implements View.OnClickListe
 
         if (view == btnPesan){
 
-            Intent intent = new Intent(TransaksiTwo.this, PemesananVersiTwo.class);
+
+
+            Intent intent = new Intent(Transaksi.this, Pemesanan.class);
 
             Bundle b = new Bundle();
             b.putString("nm_paket", tvpaket.getText().toString());
@@ -155,7 +182,7 @@ public class TransaksiTwo extends AppCompatActivity implements View.OnClickListe
             b.putString("total", tvHasilFinal.getText().toString());
             intent.putExtras(b);
             startActivity(intent);
-
         }
+
     }
 }

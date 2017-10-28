@@ -1,9 +1,8 @@
-package com.mascitra.digphotoworks.activity;
+package com.mascitra.digphotoworks.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
@@ -11,9 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapter.DataAdapter;
-import com.mascitra.digphotoworks.adapter.DataAdapterTwo;
-import com.mascitra.digphotoworks.product.Product;
+import com.mascitra.digphotoworks.adapters.DataAdapterTwo;
 import com.mascitra.digphotoworks.product.Promo;
 
 import java.util.ArrayList;

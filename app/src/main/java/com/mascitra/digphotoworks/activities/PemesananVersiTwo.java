@@ -1,44 +1,30 @@
-package com.mascitra.digphotoworks.activity;
+package com.mascitra.digphotoworks.activities;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.mascitra.digphotoworks.R;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Calendar;
-
-public class Pemesanan extends AppCompatActivity implements View.OnClickListener {
+public class PemesananVersiTwo extends AppCompatActivity implements View.OnClickListener {
     EditText ed_nama,ed_telp,ed_tgl, ed_jam;
     TextView tv_nm_paket, tv_jml_tmbahan, tv_hrg_standart,tv_hrg_tambahan,tv_total_biaya;
     Button btnSubmit;
-    ImageButton ibjam,ibtgl;
     String nama_paket, jml_tambahan,harga_awal,hrg_tambahan,total;
-    int tahun,bulan,hari;
-    int jam,menit;
-    static final int DIALOG_ID = 0;
-    static final int DIALOG_ID1 = 1;
+    private RadioButton radioButton;
+    private RadioGroup rgrub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pemesanan);
-        ibtgl = (ImageButton)findViewById(R.id.ib_tgl);
-        ibjam = (ImageButton)findViewById(R.id.ib_jam);
+        setContentView(R.layout.activity_pemesanan_versi_two);
         ed_nama = (EditText) findViewById(R.id.et_nama);
         ed_telp = (EditText) findViewById(R.id.et_no_telp);
         ed_tgl = (EditText) findViewById(R.id.et_tgl_pesan);
@@ -49,6 +35,9 @@ public class Pemesanan extends AppCompatActivity implements View.OnClickListener
         tv_hrg_tambahan = (TextView) findViewById(R.id.tv_isi_hrg_tambahan);
         tv_total_biaya = (TextView) findViewById(R.id.tv_total_biaya);
         btnSubmit = (Button) findViewById(R.id.btnSubmit_p);
+
+
+
 
         Bundle b = getIntent().getExtras();
         nama_paket  = b.getString("nm_paket");
@@ -64,14 +53,6 @@ public class Pemesanan extends AppCompatActivity implements View.OnClickListener
         tv_total_biaya.setText(total);
 
         btnSubmit.setOnClickListener(this);
-        ibjam.setOnClickListener(this);
-        ibtgl.setOnClickListener(this);
-
-        final Calendar cal = Calendar.getInstance();
-        tahun = cal.get(Calendar.YEAR);
-        bulan = cal.get(Calendar.MONTH);
-        hari = cal.get(Calendar.DAY_OF_MONTH);
-
         double total = Double.parseDouble(tv_total_biaya.getText().toString());
         double hrg_awl = Double.parseDouble(tv_hrg_standart.getText().toString());
         double hrg_tmbahan = Double.parseDouble(tv_hrg_tambahan.getText().toString());
@@ -87,7 +68,6 @@ public class Pemesanan extends AppCompatActivity implements View.OnClickListener
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -100,55 +80,18 @@ public class Pemesanan extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_ID){
-            return new DatePickerDialog(this, dpickerlistener, tahun,bulan,hari);
-
-        } else if (id == DIALOG_ID1){
-            return new TimePickerDialog(this, kTimePickerDialog, jam, menit, false);
-        }
-            return null;
-    }
-
-    protected TimePickerDialog.OnTimeSetListener kTimePickerDialog = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-            jam = hour;
-            menit = minute;
-            ed_jam.setText(jam+":"+menit);
-        }
-    };
-
-    private DatePickerDialog.OnDateSetListener dpickerlistener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            tahun = year;
-            bulan = month + 1;
-            hari = day;
-
-            ed_tgl.setText(tahun+"/"+bulan+"/"+hari);
-        }
-    };
-
     @Override
     public void onClick(View view) {
+        rgrub = (RadioGroup) findViewById(R.id.rg_option);
+        int selectedId = rgrub.getCheckedRadioButtonId();
+
+        radioButton = (RadioButton)findViewById(selectedId);
         if (view == btnSubmit){
-            Toast.makeText(Pemesanan.this, "Rincian : " + "\n"
+System.out.println("memilih :" + radioButton.getText());
+            Toast.makeText(PemesananVersiTwo.this, "Rincian Pemesanan : " + "\n"
                     +"Nama : " + ed_nama.getText() + "\n"
                     + "No Telp : " + ed_telp.getText() + "\n"
-                    + "Tanggal : " + ed_tgl.getText() + "\n"
-                    + "Jam : " + ed_jam.getText(), Toast.LENGTH_SHORT).show();
+                    + "Pilihan Waktu : " + radioButton.getText(), Toast.LENGTH_SHORT).show();
         }
-
-        if (view == ibtgl){
-            showDialog(DIALOG_ID);
-        }
-
-        if (view == ibjam){
-            showDialog(DIALOG_ID1);
-        }
-
     }
 }
