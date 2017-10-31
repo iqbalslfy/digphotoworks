@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 import com.mascitra.digphotoworks.activities.About;
 import com.mascitra.digphotoworks.activities.Gallery;
-import com.mascitra.digphotoworks.activities.Make_up;
+import com.mascitra.digphotoworks.activities.MakeUp;
 import com.mascitra.digphotoworks.activities.Paket;
 import com.mascitra.digphotoworks.activities.PhotoStudio;
 import com.mascitra.digphotoworks.activities.Preweding;
@@ -179,7 +179,7 @@ public class Home extends Fragment implements View.OnClickListener {
         }
 
         if (view == make_up) {
-            startActivity(new Intent(getActivity(), Make_up.class));
+            startActivity(new Intent(getActivity(), MakeUp.class));
         }
 
     }
