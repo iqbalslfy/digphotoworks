@@ -52,7 +52,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         TextView deskripsi = holder.deskripsi;
         ImageView imgDeskripsi = holder.imgDeskripsi;
         paket.setText(item.getName());
-        harga.setText(item.getPrice());
+        harga.setText(item.getPrice()+"");
         deskripsi.setText(item.getDetail());
         String url = AppsCore.BASE_IMAGE+item.getImage();
 
