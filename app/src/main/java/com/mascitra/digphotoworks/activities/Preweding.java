@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapters.DataAdapterPW;
 import com.mascitra.digphotoworks.adapters.ProductAdapter;
 import com.mascitra.digphotoworks.models.Product;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
