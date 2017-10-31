@@ -23,23 +23,23 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" />
-        <activity android:name=".activity.PhotoStudio" />
-        <activity android:name=".activity.Paket" />
-        <activity android:name=".activity.Transaksi" />
-        <activity android:name=".activity.Gallery" />
-        <activity android:name=".activity.About" />
-        <activity android:name=".activity.PromoActivity" />
-        <activity android:name=".activity.Preweding" />
+        <activity android:name=".activities.PhotoStudio" />
+        <activity android:name=".activities.Paket" />
+        <activity android:name=".activities.Transaksi" />
+        <activity android:name=".activities.Gallery" />
+        <activity android:name=".activities.About" />
+        <activity android:name=".activities.PromoActivity" />
+        <activity android:name=".activities.Preweding" />
         <activity
-            android:name=".activity.Pencarian"
+            android:name=".activities.Pencarian"
             android:theme="@style/NoActionBar." />
-        <activity android:name=".activity.Make_up" />
-        <activity android:name=".activity.Weding" />
-        <activity android:name=".activity.Video" />
-        <activity android:name=".activity.Pemesanan" />
-        <activity android:name=".activity.TransaksiTwo" />
-        <activity android:name=".activity.DetailPromo" />
-        <activity android:name=".activity.PemesananVersiTwo"></activity>
+        <activity android:name=".activities.Make_up" />
+        <activity android:name=".activities.Weding" />
+        <activity android:name=".activities.Video" />
+        <activity android:name=".activities.Pemesanan" />
+        <activity android:name=".activities.TransaksiTwo" />
+        <activity android:name=".activities.DetailPromo" />
+        <activity android:name=".activities.PemesananVersiTwo"></activity>
     </application>
 
 </manifest>
