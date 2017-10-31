@@ -41,13 +41,7 @@ public class Weding extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        productAdapter = new ProductAdapter(this, new ArrayList<com.mascitra.digphotoworks.models.Product>(0), new ProductAdapter.ProductItemListener() {
-            @Override
-            public void onPostClick(com.mascitra.digphotoworks.models.Product id) {
-                Intent myIntent = new Intent(Weding.this, Transaksi.class);
-                startActivity(myIntent);
-            }
-        });
+        productAdapter = new ProductAdapter(this, new ArrayList<com.mascitra.digphotoworks.models.Product>(0));
         recyclerView.setAdapter(productAdapter);
 
         loadProduct();

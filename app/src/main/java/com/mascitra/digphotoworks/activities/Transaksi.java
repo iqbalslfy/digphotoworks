@@ -11,15 +11,54 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
+import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
+import com.mascitra.digphotoworks.models.Product;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class Transaksi extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvpaket,tvharga,tvhargaAwal,tvdetail,tvtambahan,tvHasilFinal,tvHasilFinal2;
+    @BindView(R.id.txtPaketDetail)
+    TextView tvpaket;
+
+    @BindView(R.id.txtHargaItemDetail)
+    TextView tvharga;
+
+    @BindView(R.id.txt_jml_pp)
+    TextView tvhargaAwal;
+
+    @BindView(R.id.txtDeskripsiItem)
+    TextView tvdetail;
+
+    @BindView(R.id.txt_jml_tmbh_pp)
+    TextView tvtambahan;
+
+    @BindView(R.id.txt_hasil_final_pp)
+    TextView tvHasilFinal;
+
+    @BindView(R.id.txt_harga_final_bawah_pp)
+    TextView tvHasilFinal2;
+
+    @BindView(R.id.imgPemesananDetail)
     ImageView  img;
+
+    @BindView(R.id.jmlPlus)
     TextView jmlText;
-    ImageButton btnMin,BtnPlus;
+
+    @BindView(R.id.btnMin)
+    ImageButton btnMin;
+
+    @BindView(R.id.btnPlus)
+    ImageButton btnPlus;
+
+    @BindView(R.id.btnSubmit)
     Button btnPesan;
+
     Integer jmlAngka,v2,v3,Tambahan,hargaAwal,Total,Total2;
 
     String hasil;
@@ -28,34 +67,28 @@ public class Transaksi extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaksi);
+        ButterKnife.bind(this);
 
         Bundle bundle = getIntent().getExtras();
 
-        tvpaket = (TextView) findViewById(R.id.txtPaketDetail);
-        tvharga = (TextView) findViewById(R.id.txtHargaItemDetail);
-        tvdetail = (TextView) findViewById(R.id.txtDeskripsiItem);
-        tvhargaAwal = (TextView)findViewById(R.id.txt_jml_pp);
-        tvtambahan = (TextView)findViewById(R.id.txt_jml_tmbh_pp);
-        tvHasilFinal = (TextView)findViewById(R.id.txt_hasil_final_pp);
-        tvHasilFinal2 = (TextView)findViewById(R.id.txt_harga_final_bawah_pp);
-        img = (ImageView) findViewById(R.id.imgPemesananDetail);
-
-        jmlText = (TextView)findViewById(R.id.jmlPlus);
+        Product product = bundle.getParcelable("product");
 
         jmlText.setText("0");
 
-        btnMin = (ImageButton)findViewById(R.id.btnMin);
-        BtnPlus = (ImageButton)findViewById(R.id.btnPlus);
-        btnPesan = (Button)findViewById(R.id.btnSubmit);
-        tvpaket.setText(bundle.getCharSequence("paket"));
-        tvharga.setText(bundle.getCharSequence("harga"));
-        tvhargaAwal.setText(bundle.getCharSequence("harga"));
-        tvHasilFinal.setText(bundle.getCharSequence("harga"));
-        tvHasilFinal2.setText(bundle.getCharSequence("harga"));
-        tvdetail.setText(bundle.getCharSequence("deskripsi"));
+        tvpaket.setText(product.getName());
+        tvharga.setText(product.getPrice()+"");
+        tvhargaAwal.setText(product.getPrice()+"");
+        tvHasilFinal.setText(product.getPrice()+"");
+        tvHasilFinal2.setText(product.getPrice()+"");
+        tvdetail.setText(product.getDetail());
+        String url = AppsCore.BASE_IMAGE+product.getImage();
+
+        GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
+                .build());
+        Glide.with(this).load(glideUrl).into(img);
 
         btnMin.setOnClickListener(this);
-        BtnPlus.setOnClickListener(this);
+        btnPlus.setOnClickListener(this);
         btnPesan.setOnClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -161,7 +194,7 @@ public class Transaksi extends AppCompatActivity implements View.OnClickListener
 
         }
 
-        if (view == BtnPlus){
+        if (view == btnPlus){
             FuncAngkaUp();
             PerhitunganTambahan();
             TotalFinal();

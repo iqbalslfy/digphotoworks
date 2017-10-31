@@ -41,13 +41,7 @@ public class PhotoStudio extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        productAdapter = new ProductAdapter(this, new ArrayList<Product>(0), new ProductAdapter.ProductItemListener() {
-            @Override
-            public void onPostClick(Product id) {
-                Intent myIntent = new Intent(PhotoStudio.this, Transaksi.class);
-                startActivity(myIntent);
-            }
-        });
+        productAdapter = new ProductAdapter(this, new ArrayList<Product>(0));
         recyclerView.setAdapter(productAdapter);
 
         loadProduct();
