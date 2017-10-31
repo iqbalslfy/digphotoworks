@@ -1,6 +1,8 @@
 package com.mascitra.digphotoworks.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
+import com.mascitra.digphotoworks.activities.Transaksi;
 import com.mascitra.digphotoworks.models.Product;
 
 import java.util.List;
@@ -27,10 +30,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private List<Product> productList;
     private ProductItemListener productListener;
 
-    public ProductAdapter(Context context, List<Product> productList, ProductItemListener productListener) {
+    public ProductAdapter(final Context context, List<Product> productList) {
         this.context = context;
         this.productList = productList;
-        this.productListener = productListener;
+        this.productListener = new ProductItemListener() {
+            @Override
+            public void onPostClick(Product product) {
+                Intent i = new Intent();
+                Bundle b = new Bundle();
+                b.putParcelable("product", product);
+                i.putExtras(b);
+                i.setClass(context, Transaksi.class);
+                context.startActivity(i);
+            }
+        };
     }
 
     @Override
