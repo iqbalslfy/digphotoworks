@@ -61,7 +61,8 @@ public class PhotoStudio extends AppCompatActivity {
             @Override
             public void onResponse(Call<BaseResponse<ProductResponse>> call, Response<BaseResponse<ProductResponse>> response) {
                 if(response.isSuccessful()) {
-
+                    List<Product> products = response.body().getData().getProduct();
+                    productAdapter.updateProducts(products);
                 }
             }
 
