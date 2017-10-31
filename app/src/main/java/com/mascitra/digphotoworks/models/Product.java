@@ -1,5 +1,8 @@
 package com.mascitra.digphotoworks.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by blegoh on 28/10/17.
  */
 
-public class Product {
+public class Product implements Parcelable {
     @SerializedName("id")
     @Expose
     public Integer id;
@@ -117,5 +120,47 @@ public class Product {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    // Parcelling part
+    public Product(Parcel in) {
+        String[] data = new String[7];
+
+        in.readStringArray(data);
+        this.id = Integer.parseInt(data[0]);
+        this.name = data[1];
+        this.image = data[2];
+        this.detail = data[3];
+        this.price = Integer.parseInt(data[4]);
+        this.pricePlus = Integer.parseInt(data[5]);
+        this.people = Integer.parseInt(data[6]);
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[]{
+                this.id+"",
+                this.name,
+                this.image,
+                this.detail,
+                this.price + "",
+                this.pricePlus + "",
+                this.people + "",
+        });
     }
 }
