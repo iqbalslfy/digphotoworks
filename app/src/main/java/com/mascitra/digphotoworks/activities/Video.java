@@ -1,22 +1,33 @@
 package com.mascitra.digphotoworks.activities;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.Toast;
 
+import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
+import com.mascitra.digphotoworks.adapters.YouTubeAdapter;
+import com.mascitra.digphotoworks.models.youtubes.Id;
+import com.mascitra.digphotoworks.models.youtubes.Item;
+import com.mascitra.digphotoworks.networks.RetrofitApi;
+import com.mascitra.digphotoworks.responses.YouTubeResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Video extends AppCompatActivity {
 
-    WebView webView;
-    private ProgressDialog progressBar;
+    private RecyclerView recyclerView;
+    private YouTubeAdapter youtubeAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,36 +35,39 @@ public class Video extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        webView = (WebView)findViewById(R.id.web_video);
-        webView.loadUrl("https://www.youtube.com/channel/UCaCI_aYqyamCllaB0mvFKCQ/videos?sort=dd&view=0&shelf_id=0");
-        webView.setWebViewClient(new WebViewClient() {
+        recyclerView = (RecyclerView) findViewById(R.id.rc_yt);
+        recyclerView.setHasFixedSize(true);
 
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                if (progressBar!= null && progressBar.isShowing()) {
-                    progressBar.dismiss();
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        youtubeAdapter = new YouTubeAdapter(this);
+        recyclerView.setAdapter(youtubeAdapter);
+
+        loadVideo();
+
+    }
+
+    public void loadVideo() {
+        Call<YouTubeResponse> call;
+        call = RetrofitApi.getInstance(false).getApiService().youtube();
+        call.enqueue(new Callback<YouTubeResponse>() {
+            @Override
+            public void onResponse(Call<YouTubeResponse> call, Response<YouTubeResponse> response) {
+                if(response.isSuccessful()) {
+                    List<Item> items = response.body().getItems();
+                    for (int i =0; i < items.size();i++){
+                        Id id = items.get(i).getId();
+                        if (id.getVideoId() != null)
+                            youtubeAdapter.addItems(items.get(i));
+                    }
                 }
-                progressBar = ProgressDialog.show(Video.this, "DiG Photoworks", "Loading...");
             }
 
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-
-                return true;
+            @Override
+            public void onFailure(Call<YouTubeResponse> call, Throwable t) {
+                Toast.makeText(Video.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
             }
-
-            public void onPageFinished(WebView view, String url) {
-                if (progressBar.isShowing()) {
-                    progressBar.dismiss();
-                }
-            }
-
-
         });
-
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
-
     }
 
     @Override
@@ -68,16 +82,4 @@ public class Video extends AppCompatActivity {
 
     }
 
-    private class MyWebClient extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (Uri.parse(url).getHost().equals("http://google.com")){
-                return false;
-            }
-
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
-            return true;
-        }
-    }
 }
