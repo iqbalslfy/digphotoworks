@@ -29,15 +29,13 @@ public class RetrofitApi {
     private String token;
 
     public static RetrofitApi getInstance() {
-        if (instance == null)
-            instance = new RetrofitApi();
+        instance = new RetrofitApi();
 
         return instance;
     }
 
     public static RetrofitApi getInstance(boolean ig) {
-        if (instance == null)
-            instance = new RetrofitApi(ig);
+        instance = new RetrofitApi(ig);
 
         return instance;
     }
@@ -51,7 +49,8 @@ public class RetrofitApi {
     }
 
     private RetrofitApi(Boolean ig) {
-        retrofit = new Retrofit.Builder().baseUrl(AppsCore.INSTAGRAM)
+        String url = (ig)? AppsCore.INSTAGRAM : AppsCore.YOUTUBE_URL;
+        retrofit = new Retrofit.Builder().baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(getOkHttp().build())
                 .build();
@@ -80,7 +79,7 @@ public class RetrofitApi {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request()
                         .newBuilder()
-                        .addHeader("Authorization", "Bearer " + token)
+//                        .addHeader("Authorization", "Bearer " + token)
                         .build();
                 return chain.proceed(request);
             }

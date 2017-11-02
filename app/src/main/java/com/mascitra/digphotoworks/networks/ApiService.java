@@ -3,6 +3,7 @@ package com.mascitra.digphotoworks.networks;
 import com.mascitra.digphotoworks.responses.BaseResponse;
 import com.mascitra.digphotoworks.responses.InstagramResponse;
 import com.mascitra.digphotoworks.responses.ProductResponse;
+import com.mascitra.digphotoworks.responses.YouTubeResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -28,4 +29,11 @@ public interface ApiService {
 
     @GET("/api/preWedding")
     Call<BaseResponse<ProductResponse>> preWedding();
+
+    @GET("/api/product")
+    Call<BaseResponse<ProductResponse>> product();
+
+    @GET("search?key=AIzaSyDjw8VSvL3kB7HfcXSxb7KiPqr51O4OqIM&channelId=UCaCI_aYqyamCllaB0mvFKCQ&part=snippet,id&order=date&maxResults=20")
+    Call<YouTubeResponse> youtube();
+
 }
