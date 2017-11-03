@@ -69,9 +69,9 @@ public class Gallery extends AppCompatActivity {
         Call<InstagramResponse> call;
         String variables = "";
         if (next){
-            variables = "{\"id\":\"29614503\",\"first\":12,\"after\":\""+endCursor+"\"}";
+            variables = "{\"id\":\"4016255810\",\"first\":12,\"after\":\""+endCursor+"\"}";
         }else{
-            variables = "{\"id\":\"29614503\",\"first\":12}";
+            variables = "{\"id\":\"4016255810\",\"first\":12}";
         }
         call = RetrofitApi.getInstance(true).getApiService("").instagram(variables);
         call.enqueue(new Callback<InstagramResponse>() {
