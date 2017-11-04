@@ -38,6 +38,7 @@ public class YouTubeAdapter extends RecyclerView.Adapter<YouTubeAdapter.ViewHold
             public void onPostClick(Item item) {
                 Intent i = new Intent();
                 Bundle b = new Bundle();
+                b.putString("yt",item.getId().getVideoId());
                 i.putExtras(b);
                 i.setClass(context, PlayActivity.class);
                 context.startActivity(i);

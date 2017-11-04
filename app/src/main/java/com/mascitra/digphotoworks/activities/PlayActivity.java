@@ -19,6 +19,7 @@ public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.O
 
     // YouTube player view
     private YouTubePlayerView youTubeView;
+    String videoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,9 @@ public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.O
         setContentView(R.layout.activity_play);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+        Bundle bundle = getIntent().getExtras();
+
+        videoId = bundle.getString("yt");
 
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
 
@@ -40,7 +44,7 @@ public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.O
 
             // loadVideo() will auto play video
             // Use cueVideo() method, if you don't want to play it automatically
-            player.loadVideo("yVgF_ZzA3yc");
+            player.loadVideo(videoId);
 
             // Hiding player controls
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
