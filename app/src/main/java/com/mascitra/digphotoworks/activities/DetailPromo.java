@@ -9,32 +9,37 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mascitra.digphotoworks.R;
+import com.mascitra.digphotoworks.models.Promo;
 
-public class DetailPromo extends AppCompatActivity implements View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    TextView tvnama,tvharga;
-   private Button btnPesan;
+public class DetailPromo extends AppCompatActivity {
+
+    private Promo promo;
+
+    @BindView(R.id.btnPesanPromo)
+    Button btnPesan;
+
+    @BindView(R.id.tv_nm_paket_detail_promo)
+    TextView tvNama;
+
+    @BindView(R.id.tvHarga_promo)
+    TextView tvHarga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_promo);
-
-        tvnama = (TextView) findViewById(R.id.tv_nm_paket_detail_promo);
-        tvharga = (TextView)findViewById(R.id.tvHarga_promo);
-
-        btnPesan = (Button)findViewById(R.id.btnPesanPromo);
+        ButterKnife.bind(this);
 
         Bundle bundle = getIntent().getExtras();
-        tvnama.setText(bundle.getCharSequence("paket"));
-        tvharga.setText(bundle.getCharSequence("harga"));
+        promo = bundle.getParcelable("promo");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        btnPesan.setOnClickListener(this);
 
-//        double harga = Double.parseDouble(tvharga.getText().toString());
-//        String hrg = String.format("%,.0f", harga).replaceAll(",", ".");
-//        tvharga.setText(hrg);
-
+        tvNama.setText(promo.getName());
+        tvHarga.setText(promo.getPrice()+"");
     }
 
     @Override
@@ -49,16 +54,4 @@ public class DetailPromo extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == btnPesan){
-            Intent intent = new Intent(DetailPromo.this, TransaksiTwo.class);
-            Bundle b = new Bundle();
-
-            b.putString("paket", tvnama.getText().toString());
-            b.putString("harga", tvharga.getText().toString());
-            intent.putExtras(b);
-            startActivity(intent);
-        }
-    }
 }
