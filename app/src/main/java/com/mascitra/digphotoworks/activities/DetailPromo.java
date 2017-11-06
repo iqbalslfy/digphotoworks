@@ -1,10 +1,8 @@
 package com.mascitra.digphotoworks.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,7 +11,6 @@ import com.mascitra.digphotoworks.models.Promo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class DetailPromo extends AppCompatActivity {
 
@@ -28,6 +25,12 @@ public class DetailPromo extends AppCompatActivity {
     @BindView(R.id.tvHarga_promo)
     TextView tvHarga;
 
+    @BindView(R.id.tvDetail)
+    TextView tvDetail;
+
+    @BindView(R.id.tvPeriode)
+    TextView tvPeriode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,8 @@ public class DetailPromo extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvNama.setText(promo.getName());
+        tvDetail.setText(promo.getDetail());
+        tvPeriode.setText("Periode Promo "+promo.getStart()+" - "+promo.getEnd());
         tvHarga.setText(promo.getPrice()+"");
     }
 
