@@ -3,6 +3,7 @@ package com.mascitra.digphotoworks.activities;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,14 +16,28 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.mascitra.digphotoworks.AppsCore;
+import com.mascitra.digphotoworks.Home;
+import com.mascitra.digphotoworks.MainActivity;
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.models.Product;
+import com.mascitra.digphotoworks.networks.RetrofitApi;
+import com.mascitra.digphotoworks.responses.BaseResponse;
+import com.mascitra.digphotoworks.responses.OrderResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Pemesanan extends AppCompatActivity  {
 
@@ -138,7 +153,35 @@ public class Pemesanan extends AppCompatActivity  {
 
     @OnClick(R.id.btnSubmit)
     public void submit() {
+        String time = tahun+"-"+bulan+"-"+hari+" "+jam+":"+menit+":00";
+        Call<BaseResponse<OrderResponse>> call;
+        call = RetrofitApi.getInstance().getApiService("").order(edNama.getText().toString(),
+                edTelp.getText().toString(),
+                time, tambahan,(product.getPrice()+(product.getPricePlus()+tambahan))
+                );
+        call.enqueue(new Callback<BaseResponse<OrderResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<OrderResponse>> call, Response<BaseResponse<OrderResponse>> response) {
+                if(response.isSuccessful()) {
+                    startActivity(new Intent(Pemesanan.this, MainActivity.class));
+                    Toast.makeText(Pemesanan.this, "berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                }else{
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Toast.makeText(Pemesanan.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
 
+                    } catch (IOException e) {
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<OrderResponse>> call, Throwable t) {
+                Toast.makeText(Pemesanan.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @OnClick(R.id.ib_tgl)
