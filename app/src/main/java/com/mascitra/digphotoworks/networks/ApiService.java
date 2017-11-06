@@ -8,7 +8,10 @@ import com.mascitra.digphotoworks.responses.PromoResponse;
 import com.mascitra.digphotoworks.responses.YouTubeResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -38,8 +41,14 @@ public interface ApiService {
     @GET("/api/promo")
     Call<BaseResponse<PromoResponse>> promo();
 
-    @GET("/api/order")
-    Call<BaseResponse<OrderResponse>> order();
+    @POST("/api/order")
+    @FormUrlEncoded
+    Call<BaseResponse<OrderResponse>> order(
+            @Field("name") String email,
+            @Field("phone") String phone,
+            @Field("tgl_waktu_pesan") String time,
+            @Field("tambahan") int tambahan,
+            @Field("total") int total);
 
     @GET("search?key=AIzaSyDjw8VSvL3kB7HfcXSxb7KiPqr51O4OqIM&channelId=UCaCI_aYqyamCllaB0mvFKCQ&part=snippet,id&order=date&maxResults=20")
     Call<YouTubeResponse> youtube();
