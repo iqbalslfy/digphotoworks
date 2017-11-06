@@ -25,6 +25,7 @@
                         android:textSize="25dp"/>
 
                     <TextView
+                        android:id="@+id/tvDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -42,6 +43,7 @@
                         android:layout_marginBottom="30dp"/>
 
                     <TextView
+                        android:id="@+id/tvPeriode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"

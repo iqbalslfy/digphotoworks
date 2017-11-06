@@ -7,7 +7,8 @@
     tools:context="com.mascitra.digphotoworks.activities.Gallery">
 
 
-    <ScrollView
+    <com.mascitra.digphotoworks.scrolls.ScrollViewExt
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,7 +20,7 @@
             <GridView
                 android:id="@+id/gridview"
                 android:layout_width="match_parent"
-                android:layout_height="518dp"
+                android:layout_height="1000dp"
                 android:columnWidth="90dp"
                 android:gravity="center"
                 android:horizontalSpacing="10dp"
@@ -28,12 +29,7 @@
                 android:verticalSpacing="10dp">
 
             </GridView>
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Load more" />
         </LinearLayout>
-    </ScrollView>
+    </com.mascitra.digphotoworks.scrolls.ScrollViewExt>
 
 </RelativeLayout>
