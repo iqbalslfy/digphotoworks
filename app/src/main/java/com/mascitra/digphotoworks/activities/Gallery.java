@@ -18,9 +18,12 @@ import com.mascitra.digphotoworks.adapters.ImageAdapter;
 import com.mascitra.digphotoworks.models.instagrams.Edge;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
 import com.mascitra.digphotoworks.responses.InstagramResponse;
+import com.mascitra.digphotoworks.scrolls.ScrollViewExt;
+import com.mascitra.digphotoworks.scrolls.ScrollViewListener;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -33,6 +36,9 @@ public class Gallery extends AppCompatActivity {
     ImageAdapter imageAdapter;
     GridView gridview;
     String endCursor;
+
+    @BindView(R.id.scroll)
+    ScrollViewExt scroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +61,20 @@ public class Gallery extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+        scroll.setScrollViewListener(new ScrollViewListener() {
+            @Override
+            public void onScrollChanged(ScrollViewExt scrollView, int x, int y, int oldx, int oldy) {
+                View view = (View) scrollView.getChildAt(scrollView.getChildCount() - 1);
+                int diff = (view.getBottom() - (scrollView.getHeight() + scrollView.getScrollY()));
 
-    }
-
-    @OnClick(R.id.button)
-    void nextPost()
-    {
-        loadInsatgram(true);
+                // if diff is zero, then the bottom has been reached
+//                Toast.makeText(Gallery.this, "asu "+view.getBottom()+" "+(scrollView.getHeight() + scrollView.getScrollY()), Toast.LENGTH_LONG).show();
+                Log.d("asssuuuu","asu "+view.getBottom()+" "+(scrollView.getHeight() + scrollView.getScrollY()));
+                if (diff == 0) {
+                    loadInsatgram(true);
+                }
+            }
+        });
     }
 
     public void loadInsatgram(boolean next)
@@ -69,9 +82,9 @@ public class Gallery extends AppCompatActivity {
         Call<InstagramResponse> call;
         String variables = "";
         if (next){
-            variables = "{\"id\":\"4016255810\",\"first\":12,\"after\":\""+endCursor+"\"}";
+            variables = "{\"id\":\"4016255810\",\"first\":18,\"after\":\""+endCursor+"\"}";
         }else{
-            variables = "{\"id\":\"4016255810\",\"first\":12}";
+            variables = "{\"id\":\"4016255810\",\"first\":18}";
         }
         call = RetrofitApi.getInstance(true).getApiService("").instagram(variables);
         call.enqueue(new Callback<InstagramResponse>() {
