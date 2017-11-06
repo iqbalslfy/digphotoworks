@@ -1,26 +1,33 @@
 package com.mascitra.digphotoworks.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapters.DataAdapterTwo;
-import com.mascitra.digphotoworks.product.Promo;
+import com.mascitra.digphotoworks.adapters.PromoAdapter;
+import com.mascitra.digphotoworks.models.Promo;
+import com.mascitra.digphotoworks.networks.RetrofitApi;
+import com.mascitra.digphotoworks.responses.BaseResponse;
+import com.mascitra.digphotoworks.responses.ProductResponse;
+import com.mascitra.digphotoworks.responses.PromoResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PromoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private DataAdapterTwo dataAdapter;
+    private PromoAdapter promoAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Promo> productList = new ArrayList<Promo>();
 
     private EditText text;
 
@@ -35,29 +42,36 @@ public class PromoActivity extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        promoAdapter = new PromoAdapter(this, new ArrayList<Promo>(0));
+        recyclerView.setAdapter(promoAdapter);
 
-        dataAdapter = new DataAdapterTwo(productList, this);
-
-        recyclerView.setAdapter(dataAdapter);
-
-        tampilProduct();
-
-        text = (EditText)findViewById(R.id.txtCariPromo);
+        loadPromo();
+        /*text = (EditText)findViewById(R.id.txtCariPromo);
         text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), Pencarian.class));
             }
-        });
+        });*/
     }
 
-    private void tampilProduct() {
-        productList.add(new Promo(R.drawable.paket4, "Paket 1", "350.000"));
-        productList.add(new Promo(R.drawable.paket2, "Paket 2", "150.000"));
-        productList.add(new Promo(R.drawable.paket3, "Paket 3", "250.000"));
-        productList.add(new Promo(R.drawable.paket4, "Paket 4", "350.000"));
-        productList.add(new Promo(R.drawable.paket5, "Paket 5", "150.000"));
-        productList.add(new Promo(R.drawable.paket4, "Paket 6", "300.000"));
+    public void loadPromo() {
+        Call<BaseResponse<PromoResponse>> call;
+        call = RetrofitApi.getInstance().getApiService("").promo();
+        call.enqueue(new Callback<BaseResponse<PromoResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<PromoResponse>> call, Response<BaseResponse<PromoResponse>> response) {
+                if(response.isSuccessful()) {
+                    List<Promo> promos = response.body().getData().getPromo();
+                    promoAdapter.updatePromos(promos);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<PromoResponse>> call, Throwable t) {
+                Toast.makeText(PromoActivity.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
