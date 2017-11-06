@@ -1,21 +1,16 @@
 package com.mascitra.digphotoworks.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
-import com.mascitra.digphotoworks.adapters.DataAdapterPW;
 import com.mascitra.digphotoworks.adapters.ProductAdapter;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
-import com.mascitra.digphotoworks.product.Product;
 import com.mascitra.digphotoworks.responses.BaseResponse;
 import com.mascitra.digphotoworks.responses.ProductResponse;
 
