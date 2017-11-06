@@ -1,9 +1,13 @@
 package com.mascitra.digphotoworks.activities;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatCallback;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
@@ -15,11 +19,12 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
 
-public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
+public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener,AppCompatCallback{
 
     // YouTube player view
     private YouTubePlayerView youTubeView;
     String videoId;
+    private AppCompatDelegate delegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,16 @@ public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.O
         setContentView(R.layout.activity_play);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+        //let's create the delegate, passing the activity at both arguments (Activity, AppCompatCallback)
+        delegate = AppCompatDelegate.create(this, this);
+
+        //we need to call the onCreate() of the AppCompatDelegate
+        delegate.onCreate(savedInstanceState);
+
+        //we use the delegate to inflate the layout
+        delegate.setContentView(R.layout.activity_play);
+
+        delegate.setSupportActionBar(toolbar);
         Bundle bundle = getIntent().getExtras();
 
         videoId = bundle.getString("yt");
@@ -61,5 +76,21 @@ public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.O
                     getString(R.string.error_player), errorReason.toString());
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onSupportActionModeStarted(ActionMode mode) {
+
+    }
+
+    @Override
+    public void onSupportActionModeFinished(ActionMode mode) {
+
+    }
+
+    @Nullable
+    @Override
+    public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
+        return null;
     }
 }
