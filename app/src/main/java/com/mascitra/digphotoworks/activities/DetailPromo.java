@@ -5,12 +5,24 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
+import com.mascitra.digphotoworks.models.Product;
 import com.mascitra.digphotoworks.models.Promo;
+import com.mascitra.digphotoworks.networks.RetrofitApi;
+import com.mascitra.digphotoworks.responses.BaseResponse;
+import com.mascitra.digphotoworks.responses.PromoResponse;
+import com.mascitra.digphotoworks.responses.PromoShowResponse;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailPromo extends AppCompatActivity {
 
@@ -40,11 +52,29 @@ public class DetailPromo extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         promo = bundle.getParcelable("promo");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        loadPromo(promo.getId());
+    }
 
-        tvNama.setText(promo.getName());
-        tvDetail.setText(promo.getDetail());
-        tvPeriode.setText("Periode Promo "+promo.getStart()+" - "+promo.getEnd());
-        tvHarga.setText(promo.getPrice()+"");
+    public void loadPromo(int id) {
+        Call<BaseResponse<PromoShowResponse>> call;
+        call = RetrofitApi.getInstance().getApiService("").promoShow(id);
+        call.enqueue(new Callback<BaseResponse<PromoShowResponse>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<PromoShowResponse>> call, Response<BaseResponse<PromoShowResponse>> response) {
+                if(response.isSuccessful()) {
+                    promo = response.body().getData().getData();
+                    tvNama.setText(promo.getProduct().getName());
+                    tvDetail.setText(promo.getProduct().getDetail());
+                    tvPeriode.setText("Periode Promo "+promo.getStart()+" - "+promo.getEnd());
+                    tvHarga.setText(promo.getProduct().getPrice()+"");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<PromoShowResponse>> call, Throwable t) {
+                Toast.makeText(DetailPromo.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
