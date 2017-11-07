@@ -64,9 +64,9 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder>{
         TextView paket = holder.paket;
         TextView harga = holder.harga;
         ImageView imgDeskripsi = holder.imgDeskripsi;
-        paket.setText(item.getName());
-        harga.setText(item.getPrice()+"");
-        String url = AppsCore.BASE_IMAGE+item.getImage();
+        paket.setText(item.getProduct().getName());
+        harga.setText(item.getProduct().getPrice()+"");
+        String url = AppsCore.BASE_IMAGE+item.getProduct().getImage();
 
         GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
                 .build());
