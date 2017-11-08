@@ -1,20 +1,14 @@
 package com.mascitra.digphotoworks.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.models.Detail;
-import com.mascitra.digphotoworks.models.Product;
 
 import java.util.List;
 
@@ -43,7 +37,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View view = inflater.inflate(R.layout.row_layout,parent,false);
+        View view = inflater.inflate(R.layout.simple_list_item,parent,false);
 
         DetailAdapter.ViewHolder viewHolder = new DetailAdapter.ViewHolder(view, this.detailItemListener);
         return viewHolder;
@@ -53,7 +47,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Detail item = detailList.get(position);
         TextView name = holder.name;
-        name.setText(item.getName());
+        name.setText((position+1)+". "+item.getName());
     }
 
     @Override
@@ -67,9 +61,9 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
 
         DetailItemListener detailItemListener;
 
-        public ViewHolder(View itemView, DetailItemListener DetailItemListener) {
+        public ViewHolder(View itemView, DetailItemListener detailItemListener) {
             super(itemView);
-            name = itemView.findViewById(R.id.txtNamaItem);
+            name = itemView.findViewById(R.id.txtName);
 
             this.detailItemListener = detailItemListener;
             itemView.setOnClickListener(this);
@@ -82,6 +76,11 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
 
             notifyDataSetChanged();
         }
+    }
+
+    public void updateDetails(List<Detail> items) {
+        detailList = items;
+        notifyDataSetChanged();
     }
 
     private Detail getItem(int adapterPosition) {
