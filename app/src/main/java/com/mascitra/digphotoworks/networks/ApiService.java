@@ -53,7 +53,8 @@ public interface ApiService {
             @Field("phone") String phone,
             @Field("tgl_waktu_pesan") String time,
             @Field("tambahan") int tambahan,
-            @Field("total") int total);
+            @Field("total") int total,
+            @Field("product_id") int productId);
 
     @GET("search?key=AIzaSyDjw8VSvL3kB7HfcXSxb7KiPqr51O4OqIM&channelId=UCaCI_aYqyamCllaB0mvFKCQ&part=snippet,id&order=date&maxResults=20")
     Call<YouTubeResponse> youtube();
