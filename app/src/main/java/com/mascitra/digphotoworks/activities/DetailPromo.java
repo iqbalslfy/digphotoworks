@@ -19,6 +19,8 @@ import com.mascitra.digphotoworks.networks.RetrofitApi;
 import com.mascitra.digphotoworks.responses.BaseResponse;
 import com.mascitra.digphotoworks.responses.PromoShowResponse;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,13 +52,18 @@ public class DetailPromo extends AppCompatActivity {
 
     private DetailAdapter detailAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    DecimalFormat myFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_promo);
         ButterKnife.bind(this);
-
+        DecimalFormatSymbols otherSymbols;
+        otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator(',');
+        otherSymbols.setGroupingSeparator('.');
+        myFormatter = new DecimalFormat("###,###.###", otherSymbols);
         Bundle bundle = getIntent().getExtras();
         promo = bundle.getParcelable("promo");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,7 +88,7 @@ public class DetailPromo extends AppCompatActivity {
                     tvNama.setText(promo.getProduct().getName());
                     tvDetail.setText(promo.getProduct().getDetail());
                     tvPeriode.setText("Periode Promo "+promo.getStart()+" - "+promo.getEnd());
-                    tvHarga.setText(promo.getProduct().getPrice()+"");
+                    tvHarga.setText("Rp "+myFormatter.format(promo.getProduct().getPrice()));
                     detailAdapter.updateDetails(promo.getDetails());
                 }
             }

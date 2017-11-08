@@ -16,6 +16,9 @@ import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.models.Product;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -65,6 +68,7 @@ public class Transaksi extends AppCompatActivity {
     String hasil;
 
     Product product;
+    DecimalFormat myFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,11 @@ public class Transaksi extends AppCompatActivity {
         setContentView(R.layout.activity_transaksi);
         ButterKnife.bind(this);
 
+        DecimalFormatSymbols otherSymbols;
+        otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator(',');
+        otherSymbols.setGroupingSeparator('.');
+        myFormatter = new DecimalFormat("###,###.###", otherSymbols);
         Bundle bundle = getIntent().getExtras();
 
         product = bundle.getParcelable("product");
@@ -79,10 +88,10 @@ public class Transaksi extends AppCompatActivity {
         jmlPlus.setText(tambahan+"");
 
         tvpaket.setText(product.getName());
-        tvharga.setText(product.getPrice() + "");
-        tvhargaAwal.setText(product.getPrice() + "");
-        tvHasilFinal.setText(product.getPrice() + "");
-        tvHasilFinal2.setText(product.getPrice() + "");
+        tvharga.setText("Rp "+myFormatter.format(product.getPrice()));
+        tvhargaAwal.setText("Rp "+myFormatter.format(product.getPrice()) );
+        tvHasilFinal.setText("Rp "+myFormatter.format(product.getPrice() ));
+        tvHasilFinal2.setText("Rp "+myFormatter.format(product.getPrice() ));
         hargaTambah = product.getPricePlus();
         tvdetail.setText(product.getDetail());
         String url = AppsCore.BASE_IMAGE + product.getImage();
@@ -123,9 +132,9 @@ public class Transaksi extends AppCompatActivity {
 
     public void updateView() {
         jmlPlus.setText(tambahan+"");
-        tvTambahan.setText((hargaTambah * tambahan) + "");
-        tvHasilFinal.setText((product.getPrice() + (hargaTambah * tambahan)) + "");
-        tvHasilFinal2.setText((product.getPrice() + (hargaTambah * tambahan)) + "");
+        tvTambahan.setText("Rp "+myFormatter.format((hargaTambah * tambahan) ));
+        tvHasilFinal.setText("Rp "+myFormatter.format((product.getPrice() + (hargaTambah * tambahan)) ));
+        tvHasilFinal2.setText("Rp "+myFormatter.format((product.getPrice() + (hargaTambah * tambahan)) ));
     }
 
     @OnClick(R.id.btnSubmit)

@@ -19,6 +19,8 @@ import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.activities.Transaksi;
 import com.mascitra.digphotoworks.models.Product;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private ArrayList<Product> productView;
     private String search;
     private ProductItemListener productListener;
+    DecimalFormat myFormatter;
 
     public ProductAdapter(final Context context, List<Product> productList) {
         this.context = context;
@@ -49,6 +52,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 context.startActivity(i);
             }
         };
+        DecimalFormatSymbols otherSymbols;
+        otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator(',');
+        otherSymbols.setGroupingSeparator('.');
+        myFormatter = new DecimalFormat("###,###.###", otherSymbols);
     }
 
     @Override
@@ -70,7 +78,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         TextView deskripsi = holder.deskripsi;
         ImageView imgDeskripsi = holder.imgDeskripsi;
         paket.setText(item.getName());
-        harga.setText(item.getPrice()+"");
+        harga.setText("Rp "+myFormatter.format(item.getPrice()));
         deskripsi.setText(item.getDetail());
         String url = AppsCore.BASE_IMAGE+item.getImage();
 

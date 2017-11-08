@@ -26,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -64,8 +66,6 @@ public class Pemesanan extends AppCompatActivity  {
     @BindView(R.id.tv_total_biaya)
     TextView  tvTotalBiaya;
 
-    Button btnSubmit;
-
     Product product;
 
     int tambahan;
@@ -75,13 +75,18 @@ public class Pemesanan extends AppCompatActivity  {
     static final int DIALOG_ID = 0;
     static final int DIALOG_ID1 = 1;
 
+    DecimalFormat myFormatter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemesanan);
         ButterKnife.bind(this);
-
-        btnSubmit = (Button) findViewById(R.id.btnSubmit_p);
+        DecimalFormatSymbols otherSymbols;
+        otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator(',');
+        otherSymbols.setGroupingSeparator('.');
+        myFormatter = new DecimalFormat("###,###.###", otherSymbols);
 
         Bundle b = getIntent().getExtras();
         product = b.getParcelable("product");
@@ -89,9 +94,9 @@ public class Pemesanan extends AppCompatActivity  {
 
         tvNmPaket.setText(product.getName());
         tvJmlTmbahan.setText(tambahan+"");
-        tvHrgStandart.setText(product.getPrice()+"");
-        tvHrgTambahan.setText(product.getPricePlus()+"");
-        tvTotalBiaya.setText((product.getPrice()+(product.getPricePlus()+tambahan))+"");
+        tvHrgStandart.setText("Rp "+myFormatter.format(product.getPrice()));
+        tvHrgTambahan.setText("Rp "+myFormatter.format(product.getPricePlus()));
+        tvTotalBiaya.setText("Rp "+myFormatter.format((product.getPrice()+(product.getPricePlus()+tambahan))));
 
 
         final Calendar cal = Calendar.getInstance();

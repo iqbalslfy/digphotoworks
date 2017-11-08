@@ -18,6 +18,8 @@ import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.activities.DetailPromo;
 import com.mascitra.digphotoworks.models.Promo;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 /**
@@ -28,6 +30,7 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder>{
     private Context context;
     private List<Promo> promoList;
     private PromoAdapter.PromoItemListener promoListener;
+    DecimalFormat myFormatter;
 
     public PromoAdapter(final Context context, List<Promo> promoList) {
         this.context = context;
@@ -43,6 +46,11 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder>{
                 context.startActivity(i);
             }
         };
+        DecimalFormatSymbols otherSymbols;
+        otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator(',');
+        otherSymbols.setGroupingSeparator('.');
+        myFormatter = new DecimalFormat("###,###.###", otherSymbols);
     }
 
     @Override
@@ -63,7 +71,7 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.ViewHolder>{
         TextView harga = holder.harga;
         ImageView imgDeskripsi = holder.imgDeskripsi;
         paket.setText(item.getProduct().getName());
-        harga.setText(item.getProduct().getPrice()+"");
+        harga.setText("Rp "+myFormatter.format(item.getProduct().getPrice()));
         String url = AppsCore.BASE_IMAGE+item.getProduct().getImage();
 
         GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
