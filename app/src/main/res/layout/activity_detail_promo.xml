@@ -110,16 +110,15 @@
                     </android.support.v7.widget.CardView>
 
                     <Button
-                        android:id="@+id/btnPesanPromo"
+                        android:id="@+id/btnProduct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:background="@drawable/ripple_effect"
-                        android:text="Langsung Pesan"
-                        android:textColor="@color/white"
-                        android:visibility="gone"/>
+                        android:text="Lihat Paket"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
             </ScrollView>
 
