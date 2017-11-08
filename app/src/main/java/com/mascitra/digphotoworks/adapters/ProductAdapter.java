@@ -19,6 +19,7 @@ import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.activities.Transaksi;
 import com.mascitra.digphotoworks.models.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,11 +29,15 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
     private Context context;
     private List<Product> productList;
+    private ArrayList<Product> productView;
+    private String search;
     private ProductItemListener productListener;
 
     public ProductAdapter(final Context context, List<Product> productList) {
         this.context = context;
         this.productList = productList;
+        this.productView = new ArrayList<>(0);
+        this.search = "";
         this.productListener = new ProductItemListener() {
             @Override
             public void onPostClick(Product product) {
@@ -59,7 +64,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ProductAdapter.ViewHolder holder, int position) {
-        Product item = productList.get(position);
+        Product item = productView.get(position);
         TextView paket = holder.paket;
         TextView harga = holder.harga;
         TextView deskripsi = holder.deskripsi;
@@ -76,7 +81,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return productView.size();
     }
 
 
@@ -111,13 +116,34 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
     }
 
+    private void updateView()
+    {
+        this.productView = new ArrayList<>();
+        for (int i=0;i<this.productList.size();i++){
+            if (this.search.equals("")){
+                this.productView.add(this.productList.get(i));
+            }else{
+                if (this.productList.get(i).getName().matches("(.*)"+search+"(.*)")){
+                    this.productView.add(this.productList.get(i));
+                }
+            }
+        }
+    }
+
     public void updateProducts(List<Product> items) {
         productList = items;
+        this.updateView();
+        notifyDataSetChanged();
+    }
+
+    public void search(String search){
+        this.search = search;
+        this.updateView();
         notifyDataSetChanged();
     }
 
     private Product getItem(int adapterPosition) {
-        return productList.get(adapterPosition);
+        return productView.get(adapterPosition);
     }
 
     public interface ProductItemListener {

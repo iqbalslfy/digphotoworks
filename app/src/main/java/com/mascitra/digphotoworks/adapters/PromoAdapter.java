@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import com.bumptech.glide.load.model.LazyHeaders;
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.activities.DetailPromo;
-import com.mascitra.digphotoworks.activities.Transaksi;
 import com.mascitra.digphotoworks.models.Promo;
 
 import java.util.List;
