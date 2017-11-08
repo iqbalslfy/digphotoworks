@@ -12,13 +12,10 @@ import android.widget.Toast;
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.adapters.DetailAdapter;
-import com.mascitra.digphotoworks.adapters.PromoAdapter;
 import com.mascitra.digphotoworks.models.Detail;
-import com.mascitra.digphotoworks.models.Product;
 import com.mascitra.digphotoworks.models.Promo;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
 import com.mascitra.digphotoworks.responses.BaseResponse;
-import com.mascitra.digphotoworks.responses.PromoResponse;
 import com.mascitra.digphotoworks.responses.PromoShowResponse;
 
 import java.util.ArrayList;
