@@ -153,8 +153,7 @@ public class Pemesanan extends AppCompatActivity  {
         Call<BaseResponse<OrderResponse>> call;
         call = RetrofitApi.getInstance().getApiService("").order(edNama.getText().toString(),
                 edTelp.getText().toString(),
-                time, tambahan,(product.getPrice()+(product.getPricePlus()+tambahan))
-                );
+                time, tambahan,(product.getPrice()+(product.getPricePlus()+tambahan)),product.getId());
         call.enqueue(new Callback<BaseResponse<OrderResponse>>() {
             @Override
             public void onResponse(Call<BaseResponse<OrderResponse>> call, Response<BaseResponse<OrderResponse>> response) {

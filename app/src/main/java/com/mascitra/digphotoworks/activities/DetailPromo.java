@@ -1,5 +1,6 @@
 package com.mascitra.digphotoworks.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,9 +32,6 @@ import retrofit2.Response;
 public class DetailPromo extends AppCompatActivity {
 
     private Promo promo;
-
-    @BindView(R.id.btnPesanPromo)
-    Button btnPesan;
 
     @BindView(R.id.tv_nm_paket_detail_promo)
     TextView tvNama;
@@ -46,8 +45,9 @@ public class DetailPromo extends AppCompatActivity {
     @BindView(R.id.tvPeriode)
     TextView tvPeriode;
 
+    @BindView(R.id.rc_detail)
+    RecyclerView recyclerView;
 
-    private RecyclerView recyclerView;
     private DetailAdapter detailAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -62,7 +62,6 @@ public class DetailPromo extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         loadPromo(promo.getId());
 
-        recyclerView = (RecyclerView) findViewById(R.id.rc_detail);
         recyclerView.setHasFixedSize(false);
 
         layoutManager = new LinearLayoutManager(this);
@@ -71,7 +70,7 @@ public class DetailPromo extends AppCompatActivity {
         recyclerView.setAdapter(detailAdapter);
     }
 
-    public void loadPromo(int id) {
+    private void loadPromo(int id) {
         Call<BaseResponse<PromoShowResponse>> call;
         call = RetrofitApi.getInstance().getApiService("").promoShow(id);
         call.enqueue(new Callback<BaseResponse<PromoShowResponse>>() {
@@ -92,6 +91,17 @@ public class DetailPromo extends AppCompatActivity {
                 Toast.makeText(DetailPromo.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @OnClick(R.id.btnProduct)
+    public void onClickButton()
+    {
+        Intent i = new Intent();
+        Bundle b = new Bundle();
+        b.putParcelable("product", promo.getProduct());
+        i.putExtras(b);
+        i.setClass(DetailPromo.this, Transaksi.class);
+        startActivity(i);
     }
 
     @Override

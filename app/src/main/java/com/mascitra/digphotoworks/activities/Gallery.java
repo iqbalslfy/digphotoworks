@@ -30,8 +30,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Gallery extends AppCompatActivity {
-    private WebView webView = null;
-    private ProgressDialog progressBar;
     ImageAdapter imageAdapter;
     GridView gridview;
     String endCursor;
