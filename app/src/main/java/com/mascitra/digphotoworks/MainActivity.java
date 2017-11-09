@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_home:
                     transaction.replace(R.id.content, new Home()).commit();
                     return true;
-                case R.id.nav_booking:
-                    transaction.replace(R.id.content, new Booking()).commit();
+                case R.id.nav_contact:
+                    transaction.replace(R.id.content, new Contact()).commit();
                     return true;
-                case R.id.nav_inbox:
-                    transaction.replace(R.id.content, new Inbox()).commit();
+                case R.id.nav_about:
+                    transaction.replace(R.id.content, new About()).commit();
                     return true;
             }
             return false;

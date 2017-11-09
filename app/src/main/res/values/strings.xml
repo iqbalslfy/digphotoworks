@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">DiG Photoworks</string>
     <string name="title_home">Home</string>
-    <string name="title_booking">Booking</string>
-    <string name="title_inbox">Inbox</string>
+    <string name="title_about">About</string>
+    <string name="title_contact">Contact</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="title_activity_pemesanan">Pemesanan</string>
     <string name="title_activity_play">PlayActivity</string>

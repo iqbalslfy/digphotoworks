@@ -1,6 +1,11 @@
 package com.mascitra.digphotoworks.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -40,7 +45,6 @@ public class ViewPagerAdapter extends PagerAdapter{
         View view = layoutInflater.inflate(R.layout.slider_item, null);
         ImageView imageView = view.findViewById(R.id.img);
         imageView.setImageResource(images[position]);
-
 
         ViewPager vp = (ViewPager) container;
         vp.addView(view, 0);

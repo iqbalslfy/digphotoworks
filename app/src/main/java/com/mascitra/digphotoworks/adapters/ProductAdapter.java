@@ -71,6 +71,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
                 .build());
+
         Glide.with(context).load(glideUrl).into(imgDeskripsi);
     }
 
