@@ -2,14 +2,10 @@ package com.mascitra.digphotoworks.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;

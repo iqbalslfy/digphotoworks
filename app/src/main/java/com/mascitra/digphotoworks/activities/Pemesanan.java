@@ -7,17 +7,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.mascitra.digphotoworks.AppsCore;
-import com.mascitra.digphotoworks.Home;
 import com.mascitra.digphotoworks.MainActivity;
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.models.Product;
@@ -29,8 +26,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,8 +66,6 @@ public class Pemesanan extends AppCompatActivity  {
     @BindView(R.id.tv_total_biaya)
     TextView  tvTotalBiaya;
 
-    Button btnSubmit;
-
     Product product;
 
     int tambahan;
@@ -79,13 +75,18 @@ public class Pemesanan extends AppCompatActivity  {
     static final int DIALOG_ID = 0;
     static final int DIALOG_ID1 = 1;
 
+    DecimalFormat myFormatter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemesanan);
         ButterKnife.bind(this);
-
-        btnSubmit = (Button) findViewById(R.id.btnSubmit_p);
+        DecimalFormatSymbols otherSymbols;
+        otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator(',');
+        otherSymbols.setGroupingSeparator('.');
+        myFormatter = new DecimalFormat("###,###.###", otherSymbols);
 
         Bundle b = getIntent().getExtras();
         product = b.getParcelable("product");
@@ -93,9 +94,9 @@ public class Pemesanan extends AppCompatActivity  {
 
         tvNmPaket.setText(product.getName());
         tvJmlTmbahan.setText(tambahan+"");
-        tvHrgStandart.setText(product.getPrice()+"");
-        tvHrgTambahan.setText(product.getPricePlus()+"");
-        tvTotalBiaya.setText((product.getPrice()+(product.getPricePlus()+tambahan))+"");
+        tvHrgStandart.setText("Rp "+myFormatter.format(product.getPrice()));
+        tvHrgTambahan.setText("Rp "+myFormatter.format(product.getPricePlus()));
+        tvTotalBiaya.setText("Rp "+myFormatter.format((product.getPrice()+(product.getPricePlus()+tambahan))));
 
 
         final Calendar cal = Calendar.getInstance();
@@ -157,8 +158,7 @@ public class Pemesanan extends AppCompatActivity  {
         Call<BaseResponse<OrderResponse>> call;
         call = RetrofitApi.getInstance().getApiService("").order(edNama.getText().toString(),
                 edTelp.getText().toString(),
-                time, tambahan,(product.getPrice()+(product.getPricePlus()+tambahan))
-                );
+                time, tambahan,(product.getPrice()+(product.getPricePlus()+tambahan)),product.getId());
         call.enqueue(new Callback<BaseResponse<OrderResponse>>() {
             @Override
             public void onResponse(Call<BaseResponse<OrderResponse>> call, Response<BaseResponse<OrderResponse>> response) {

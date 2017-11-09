@@ -14,7 +14,6 @@ import com.mascitra.digphotoworks.adapters.PromoAdapter;
 import com.mascitra.digphotoworks.models.Promo;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
 import com.mascitra.digphotoworks.responses.BaseResponse;
-import com.mascitra.digphotoworks.responses.ProductResponse;
 import com.mascitra.digphotoworks.responses.PromoResponse;
 
 import java.util.ArrayList;

@@ -25,14 +25,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Gallery extends AppCompatActivity {
-    private WebView webView = null;
-    private ProgressDialog progressBar;
     ImageAdapter imageAdapter;
     GridView gridview;
     String endCursor;

@@ -97,78 +97,28 @@
                                 android:layout_marginBottom="5dp"
                                 />
 
-                            <TextView
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rc_detail"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/tv_nomor"
-                                android:text="1. Gratis Foto 5X Ganti Baju."
-                                android:padding="5dp"
-                                android:layout_below="@id/diskon"
-                                android:inputType="text|textMultiLine"
-                                android:maxLines="20"
-                                android:ems="10"
-                                />
+                                android:layout_height="match_parent"
+                                android:scrollbars="horizontal">
 
-                            <TextView
-
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="2. 5 Edit dan Cetak 4R"
-                                android:padding="5dp"
-                                android:layout_below="@id/diskon"
-                                android:layout_toRightOf="@id/tv_nomor"
-                                android:inputType="text|textMultiLine"
-                                android:maxLines="20"
-                                android:ems="10"/>
-
-                            <TextView
-
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="3. Makan Gratis"
-                                android:padding="5dp"
-                                android:layout_below="@id/diskon"
-                                android:layout_toRightOf="@id/tv_nomor"
-                                android:inputType="text|textMultiLine"
-                                android:maxLines="20"
-                                android:ems="10"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-
-                                android:text="4. Dikasih Uang dari DiG Photoworks"
-                                android:padding="5dp"
-                                android:layout_below="@id/diskon"
-                                android:inputType="text|textMultiLine"
-                                android:maxLines="20"
-                                android:ems="10"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="5. Dikasih Pesangon Setelah Foto."
-                                android:padding="5dp"
-                                android:layout_below="@id/diskon"
-                                android:inputType="text|textMultiLine"
-                                android:maxLines="20"
-                                android:ems="10"/>
+                            </android.support.v7.widget.RecyclerView>
 
                         </LinearLayout>
 
                     </android.support.v7.widget.CardView>
 
                     <Button
-                        android:id="@+id/btnPesanPromo"
+                        android:id="@+id/btnProduct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:background="@drawable/ripple_effect"
-                        android:text="Langsung Pesan"
-                        android:textColor="@color/white"
-                        android:visibility="gone"/>
+                        android:text="Lihat Paket"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
             </ScrollView>
 

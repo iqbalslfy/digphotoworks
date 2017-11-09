@@ -15,7 +15,6 @@ import com.mascitra.digphotoworks.models.youtubes.Item;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
 import com.mascitra.digphotoworks.responses.YouTubeResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

@@ -1,10 +1,10 @@
 package com.mascitra.digphotoworks.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,12 +19,21 @@ import com.mascitra.digphotoworks.responses.ProductResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MakeUp extends AppCompatActivity {
-    private RecyclerView recyclerView;
+
+    @BindView(R.id.txtCari)
+    EditText search;
+
+    @BindView(R.id.rc_product)
+    RecyclerView recyclerView;
+
     private ProductAdapter productAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -32,10 +41,9 @@ public class MakeUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_up);
-
+        setContentView(R.layout.activity_paket);
+        ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        recyclerView = (RecyclerView) findViewById(R.id.rc_make_up);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
@@ -44,6 +52,12 @@ public class MakeUp extends AppCompatActivity {
         recyclerView.setAdapter(productAdapter);
 
         loadProduct();
+    }
+
+    @OnTextChanged(R.id.txtCari)
+    void search(){
+        Log.d("search",search.getText().toString());
+        productAdapter.search(search.getText().toString());
     }
 
     public void loadProduct() {

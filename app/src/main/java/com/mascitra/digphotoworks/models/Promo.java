@@ -6,25 +6,19 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by blegoh on 06/11/17.
  */
 
 public class Promo implements Parcelable{
+    @SerializedName("id")
     @Expose
     public Integer id;
-    @SerializedName("name")
+    @SerializedName("product_id")
     @Expose
-    public String name;
-    @SerializedName("image")
-    @Expose
-    public String image;
-    @SerializedName("detail")
-    @Expose
-    public String detail;
-    @SerializedName("price")
-    @Expose
-    public Integer price;
+    public Integer productId;
     @SerializedName("start")
     @Expose
     public String start;
@@ -37,49 +31,12 @@ public class Promo implements Parcelable{
     @SerializedName("updated_at")
     @Expose
     public String updatedAt;
-
-    // Parcelling part
-    public Promo(Parcel in) {
-        String[] data = new String[7];
-
-        in.readStringArray(data);
-        this.id = Integer.parseInt(data[0]);
-        this.name = data[1];
-        this.image = data[2];
-        this.detail = data[3];
-        this.price = Integer.parseInt(data[4]);
-        this.start = data[4];
-        this.end = data[4];
-
-    }
-
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-        public Promo createFromParcel(Parcel in) {
-            return new Promo(in);
-        }
-
-        public Promo[] newArray(int size) {
-            return new Promo[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(new String[]{
-                this.id+"",
-                this.name,
-                this.image,
-                this.detail,
-                this.price + "",
-                this.start,
-                this.end,
-        });
-    }
+    @SerializedName("product")
+    @Expose
+    public Product product;
+    @SerializedName("details")
+    @Expose
+    public List<Detail> details = null;
 
     public Integer getId() {
         return id;
@@ -89,36 +46,12 @@ public class Promo implements Parcelable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public String getStart() {
@@ -152,4 +85,59 @@ public class Promo implements Parcelable{
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public List<Detail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<Detail> details) {
+        this.details = details;
+    }
+
+    // Parcelling part
+    public Promo(Parcel in) {
+        String[] data = new String[4];
+
+        in.readStringArray(data);
+        this.id = Integer.parseInt(data[0]);
+        this.productId = Integer.parseInt(data[1]);
+        this.start = data[2];
+        this.end = data[3];
+
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Promo createFromParcel(Parcel in) {
+            return new Promo(in);
+        }
+
+        public Promo[] newArray(int size) {
+            return new Promo[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[]{
+                this.id+"",
+                this.productId+"",
+                this.start,
+                this.end,
+        });
+    }
+
+
 }
