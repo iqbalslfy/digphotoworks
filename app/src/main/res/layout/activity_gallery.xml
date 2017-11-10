@@ -7,29 +7,29 @@
     tools:context="com.mascitra.digphotoworks.activities.Gallery">
 
 
-    <com.mascitra.digphotoworks.scrolls.ScrollViewExt
+   <!-- <com.mascitra.digphotoworks.scrolls.ScrollViewExt
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-
+-->
             <GridView
                 android:id="@+id/gridview"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:numColumns="auto_fit"
-                android:columnWidth="90dp"
-                android:horizontalSpacing="10dp"
-                android:verticalSpacing="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:verticalSpacing="0dp"
+                android:horizontalSpacing="0dp"
+                android:stretchMode="columnWidth"
+                android:numColumns="3"
                 android:gravity="center"
-                android:stretchMode="columnWidth">
+                android:scrollbars="horizontal">
 
             </GridView>
-        </LinearLayout>
-    </com.mascitra.digphotoworks.scrolls.ScrollViewExt>
+        <!--</LinearLayout>-->
+    <!--</com.mascitra.digphotoworks.scrolls.ScrollViewExt>-->
 
 </RelativeLayout>
