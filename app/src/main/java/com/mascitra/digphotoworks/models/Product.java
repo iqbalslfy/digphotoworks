@@ -124,7 +124,7 @@ public class Product implements Parcelable {
 
     // Parcelling part
     public Product(Parcel in) {
-        String[] data = new String[7];
+        String[] data = new String[8];
 
         in.readStringArray(data);
         this.id = Integer.parseInt(data[0]);
@@ -134,6 +134,7 @@ public class Product implements Parcelable {
         this.price = Integer.parseInt(data[4]);
         this.pricePlus = Integer.parseInt(data[5]);
         this.people = Integer.parseInt(data[6]);
+        this.categoryId = Integer.parseInt(data[7]);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
@@ -161,6 +162,7 @@ public class Product implements Parcelable {
                 this.price + "",
                 this.pricePlus + "",
                 this.people + "",
+                this.categoryId +""
         });
     }
 }
