@@ -95,7 +95,7 @@ public class Pemesanan extends AppCompatActivity  {
         tvNmPaket.setText(product.getName());
         tvJmlTmbahan.setText(tambahan+"");
         tvHrgStandart.setText("Rp "+myFormatter.format(product.getPrice()));
-        tvHrgTambahan.setText("Rp "+myFormatter.format(product.getPricePlus()));
+        tvHrgTambahan.setText("Rp "+myFormatter.format(product.getPricePlus()*tambahan));
         tvTotalBiaya.setText("Rp "+myFormatter.format((product.getPrice()+(product.getPricePlus()*tambahan))));
 
 
