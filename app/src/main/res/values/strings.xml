@@ -6,4 +6,5 @@
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="title_activity_pemesanan">Pemesanan</string>
     <string name="title_activity_play">PlayActivity</string>
+    <string name="title_activity_pemesanan_wedding">Pemesanan</string>
 </resources>
