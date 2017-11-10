@@ -37,9 +37,8 @@
         <activity android:name=".activities.Weding" />
         <activity android:name=".activities.Video" />
         <activity android:name=".activities.Pemesanan" />
-        <activity android:name=".activities.TransaksiTwo" />
         <activity android:name=".activities.DetailPromo" />
-        <activity android:name=".activities.PemesananVersiTwo" />
+        <activity android:name=".activities.PemesananWedding" />
         <activity
             android:name=".activities.PlayActivity"
             android:label="@string/title_activity_play"
