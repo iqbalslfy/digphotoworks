@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -18,9 +18,8 @@ import com.mascitra.digphotoworks.adapters.ImageAdapter;
 import com.mascitra.digphotoworks.models.instagrams.Edge;
 import com.mascitra.digphotoworks.networks.RetrofitApi;
 import com.mascitra.digphotoworks.responses.InstagramResponse;
-import com.mascitra.digphotoworks.scrolls.ScrollViewExt;
-import com.mascitra.digphotoworks.scrolls.ScrollViewListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,9 +32,9 @@ public class Gallery extends AppCompatActivity {
     ImageAdapter imageAdapter;
     GridView gridview;
     String endCursor;
-
-    @BindView(R.id.scroll)
-    ScrollViewExt scroll;
+    Boolean hasNextPage = false;
+    ProgressDialog loading;
+    ArrayList<String> cek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +42,14 @@ public class Gallery extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        cek = new ArrayList<>();
+        loading = new ProgressDialog(this);
         imageAdapter = new ImageAdapter(this);
         ButterKnife.bind(this);
+        loading.setTitle("Loading");
+        loading.setMessage("Wait while loading...");
+        loading.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        loading.show();
         loadInsatgram(false);
 
         gridview = (GridView) findViewById(R.id.gridview);
@@ -58,17 +62,24 @@ public class Gallery extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-        scroll.setScrollViewListener(new ScrollViewListener() {
+        gridview.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onScrollChanged(ScrollViewExt scrollView, int x, int y, int oldx, int oldy) {
-                View view = (View) scrollView.getChildAt(scrollView.getChildCount() - 1);
-                int diff = (view.getBottom() - (scrollView.getHeight() + scrollView.getScrollY()));
+            public void onScrollStateChanged(AbsListView absListView, int i) {
 
-                // if diff is zero, then the bottom has been reached
-//                Toast.makeText(Gallery.this, "asu "+view.getBottom()+" "+(scrollView.getHeight() + scrollView.getScrollY()), Toast.LENGTH_LONG).show();
-                Log.d("asssuuuu","asu "+view.getBottom()+" "+(scrollView.getHeight() + scrollView.getScrollY()));
-                if (diff == 0) {
-                    loadInsatgram(true);
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(firstVisibleItem + visibleItemCount >= totalItemCount){
+                    if (hasNextPage){
+                        if (!(cek.size()>0 && cek.get(cek.size()-1).equals(endCursor))){
+                            loading.setTitle("Loading");
+                            loading.setMessage("Wait while loading...");
+                            loading.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                            loading.show();
+                            loadInsatgram(true);
+                        }
+                    }
                 }
             }
         });
@@ -79,15 +90,19 @@ public class Gallery extends AppCompatActivity {
         Call<InstagramResponse> call;
         String variables = "";
         if (next){
-            variables = "{\"id\":\"4016255810\",\"first\":18,\"after\":\""+endCursor+"\"}";
+            cek.add(endCursor);
+            variables = "{\"id\":\"4016255810\",\"first\":12,\"after\":\""+endCursor+"\"}";
         }else{
-            variables = "{\"id\":\"4016255810\",\"first\":18}";
+            variables = "{\"id\":\"4016255810\",\"first\":12}";
         }
         call = RetrofitApi.getInstance(true).getApiService("").instagram(variables);
         call.enqueue(new Callback<InstagramResponse>() {
             @Override
             public void onResponse(Call<InstagramResponse> call, Response<InstagramResponse> response) {
+
                 if(response.isSuccessful()) {
+                    endCursor = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getPageInfo().getEndCursor();
+                    hasNextPage = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getPageInfo().getHasNextPage();
                     List<Edge> edges = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getEdges();
                     for (int i = 0; i < edges.size();i++){
                         String thumbnail_src = edges.get(i).getNode().getThumbnailSrc();
@@ -95,12 +110,13 @@ public class Gallery extends AppCompatActivity {
                     }
                     Log.d("isine",imageAdapter.getCount()+"");
                     gridview.invalidateViews();
-                    endCursor = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getPageInfo().getEndCursor();
+                    loading.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<InstagramResponse> call, Throwable t) {
+                loading.dismiss();
                 Toast.makeText(Gallery.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
             }
         });
