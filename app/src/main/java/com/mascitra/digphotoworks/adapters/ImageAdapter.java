@@ -1,6 +1,7 @@
 package com.mascitra.digphotoworks.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
+import com.mascitra.digphotoworks.R;
 
 import java.util.ArrayList;
 
@@ -19,11 +21,13 @@ import java.util.ArrayList;
 
 public class ImageAdapter extends BaseAdapter{
     private Context mContext;
+    private final LayoutInflater mInflater;
 
     private ArrayList<String> ig = new ArrayList<>();
 
     public ImageAdapter(Context c) {
         mContext = c;
+        mInflater = LayoutInflater.from(mContext);
     }
 
     public int getCount() {
@@ -40,23 +44,19 @@ public class ImageAdapter extends BaseAdapter{
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        ImageView picture;
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(0, 0, 0, 0);
-        } else {
-            imageView = (ImageView) convertView;
+            convertView = mInflater.inflate(R.layout.grid_item, parent, false);
+            convertView.setTag(R.id.picture, convertView .findViewById(R.id.picture));
         }
+        picture = (ImageView) convertView.getTag(R.id.picture);
 
         String url = this.ig.get(position);
 
         GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
                 .build());
-        Glide.with(mContext).load(glideUrl).into(imageView);
-        return imageView;
+        Glide.with(mContext).load(glideUrl).into(picture);
+        return convertView;
     }
 
     public void addImage(String url){
