@@ -57,8 +57,7 @@ public class PlayActivity extends YouTubeBaseActivity implements YouTubePlayer.O
             // Use cueVideo() method, if you don't want to play it automatically
             player.loadVideo(videoId);
 
-            // Hiding player controls
-            player.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
+            player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
         }
     }
 
