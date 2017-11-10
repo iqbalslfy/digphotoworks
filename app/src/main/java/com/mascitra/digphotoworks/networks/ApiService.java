@@ -3,6 +3,7 @@ package com.mascitra.digphotoworks.networks;
 import com.mascitra.digphotoworks.responses.BaseResponse;
 import com.mascitra.digphotoworks.responses.InstagramResponse;
 import com.mascitra.digphotoworks.responses.OrderResponse;
+import com.mascitra.digphotoworks.responses.OrderWResponse;
 import com.mascitra.digphotoworks.responses.ProductResponse;
 import com.mascitra.digphotoworks.responses.PromoResponse;
 import com.mascitra.digphotoworks.responses.PromoShowResponse;
@@ -53,6 +54,15 @@ public interface ApiService {
             @Field("phone") String phone,
             @Field("tgl_waktu_pesan") String time,
             @Field("tambahan") int tambahan,
+            @Field("total") int total,
+            @Field("product_id") int productId);
+
+    @POST("/api/orderw")
+    @FormUrlEncoded
+    Call<BaseResponse<OrderWResponse>> orderW(
+            @Field("name") String email,
+            @Field("phone") String phone,
+            @Field("waktu") String waktu,
             @Field("total") int total,
             @Field("product_id") int productId);
 
