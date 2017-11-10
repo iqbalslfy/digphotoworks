@@ -96,7 +96,7 @@ public class Pemesanan extends AppCompatActivity  {
         tvJmlTmbahan.setText(tambahan+"");
         tvHrgStandart.setText("Rp "+myFormatter.format(product.getPrice()));
         tvHrgTambahan.setText("Rp "+myFormatter.format(product.getPricePlus()));
-        tvTotalBiaya.setText("Rp "+myFormatter.format((product.getPrice()+(product.getPricePlus()+tambahan))));
+        tvTotalBiaya.setText("Rp "+myFormatter.format((product.getPrice()+(product.getPricePlus()*tambahan))));
 
 
         final Calendar cal = Calendar.getInstance();
@@ -156,8 +156,7 @@ public class Pemesanan extends AppCompatActivity  {
     public void submit() {
         String time = tahun+"-"+bulan+"-"+hari+" "+jam+":"+menit+":00";
         Call<BaseResponse<OrderResponse>> call;
-        call = RetrofitApi.getInstance().getApiService("").order(edNama.getText().toString(),
-                edTelp.getText().toString(),
+        call = RetrofitApi.getInstance().getApiService("").order(edNama.getText().toString(),edTelp.getText().toString(),
                 time, tambahan,(product.getPrice()+(product.getPricePlus()+tambahan)),product.getId());
         call.enqueue(new Callback<BaseResponse<OrderResponse>>() {
             @Override

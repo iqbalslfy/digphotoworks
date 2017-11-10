@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -51,6 +52,12 @@ public class Transaksi extends AppCompatActivity {
 
     @BindView(R.id.jmlPlus)
     TextView jmlPlus;
+
+    @BindView(R.id.txt_text_jumlah_tambahan_org)
+    TextView txtJumlahTambahanOrg;
+
+    @BindView(R.id.txt_hrg_tmbh_pp)
+    TextView txtHrgTmbh;
 
     @BindView(R.id.btnMin)
     ImageButton btnMin;
@@ -102,6 +109,20 @@ public class Transaksi extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if (product.getCategoryId() != 1){
+            hidden();
+        }
+
+    }
+
+    private void hidden()
+    {
+        btnMin.setVisibility(View.GONE);
+        btnPlus.setVisibility(View.GONE);
+        jmlPlus.setVisibility(View.GONE);
+        txtJumlahTambahanOrg.setVisibility(View.GONE);
+        tvTambahan.setVisibility(View.GONE);
+        txtHrgTmbh.setVisibility(View.GONE);
     }
 
     @Override
@@ -144,7 +165,11 @@ public class Transaksi extends AppCompatActivity {
         b.putParcelable("product", product);
         b.putInt("tambahan",tambahan);
         i.putExtras(b);
-        i.setClass(this, Pemesanan.class);
+        if (product.getCategoryId() == 3 || product.getCategoryId() == 4){
+            i.setClass(this, PemesananWedding.class);
+        }else{
+            i.setClass(this, Pemesanan.class);
+        }
         startActivity(i);
     }
 
