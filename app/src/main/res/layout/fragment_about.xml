@@ -54,6 +54,7 @@
             android:layout_below="@+id/text2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -61,6 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:textAlignment="center"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero nulla, hendrerit eu urna eget, dapibus dapibus mauris. Donec nec augue non est vehicula accumsan in at velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin et blandit turpis. Etiam commodo nulla mauris, sit amet bibendum eros dignissim id. Suspendisse ac mollis lacus. Quisque ante ex, pretium aliquam rutrum id, tempus venenatis enim. Etiam finibus purus sed malesuada scelerisque. Fusce dignissim maximus feugiat. Quisque imperdiet libero non purus luctus congue. Vestibulum finibus hendrerit massa quis molestie. Aliquam tincidunt at lectus et commodo. Nullam sit amet mi rhoncus, eleifend felis vel, tempus velit. Ut et elit sit amet magna consectetur dictum a sed turpis. Duis nec sem eget nisi porta eleifend nec eget elit. Vivamus sollicitudin porta porttitor.
 
 Duis euismod sodales nibh in convallis. Sed dolor augue, pretium vitae sem sit amet, malesuada efficitur quam. Sed non tellus augue. Curabitur elementum quis neque id hendrerit. Duis interdum, dui non interdum mattis, nunc dolor ullamcorper eros, sed tempus ex lectus quis libero. Aenean et eros ornare, vestibulum augue euismod, porta dolor. Donec massa tellus, tempus vitae arcu vitae, interdum placerat sem. Vivamus nec odio quis nulla eleifend bibendum. Sed semper, mi in cursus congue, enim nulla condimentum eros, nec lacinia arcu ex eu massa. Aliquam erat volutpat. Vestibulum dignissim sapien eu ligula interdum, in feugiat lectus ornare. Nam eu ullamcorper tellus. Mauris sed quam eget velit tempor scelerisque non ut lacus.

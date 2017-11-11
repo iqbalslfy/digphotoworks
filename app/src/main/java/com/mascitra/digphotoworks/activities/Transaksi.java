@@ -3,6 +3,7 @@ package com.mascitra.digphotoworks.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -68,6 +69,9 @@ public class Transaksi extends AppCompatActivity {
     @BindView(R.id.btnSubmit)
     Button btnPesan;
 
+    @BindView(R.id.card_p_one)
+    CardView cardViewFoto;
+
     int jmlAngka;
     int hargaTambah;
     int tambahan = 0;
@@ -76,6 +80,7 @@ public class Transaksi extends AppCompatActivity {
 
     Product product;
     DecimalFormat myFormatter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,5 +177,11 @@ public class Transaksi extends AppCompatActivity {
         }
         startActivity(i);
     }
+
+    @OnClick(R.id.card_p_one)
+    public void view(){
+        startActivity(new Intent(getApplicationContext(), LoadImage.class));
+    }
+
 
 }

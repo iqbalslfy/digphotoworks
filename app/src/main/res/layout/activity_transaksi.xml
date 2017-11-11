@@ -122,7 +122,8 @@
                         android:layout_below="@+id/txt_text_jumlah_org"
                         android:text="Jumlah Tambahan /(Org)"
                         android:padding="5dp"
-                        android:layout_marginBottom="5dp"/>
+                        android:layout_marginBottom="5dp"
+                        />
 
                         <TextView
                             android:id="@+id/jmlPlus"
