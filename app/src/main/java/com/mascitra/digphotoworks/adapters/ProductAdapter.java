@@ -132,7 +132,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             if (this.search.equals("")){
                 this.productView.add(this.productList.get(i));
             }else{
-                if (this.productList.get(i).getName().matches("(.*)"+search+"(.*)")){
+                if (this.productList.get(i).getName().toLowerCase().matches("(.*)"+search.toLowerCase()+"(.*)")){
                     this.productView.add(this.productList.get(i));
                 }
             }
