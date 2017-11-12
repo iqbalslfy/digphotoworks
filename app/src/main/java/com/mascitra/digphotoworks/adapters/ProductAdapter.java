@@ -16,6 +16,8 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.mascitra.digphotoworks.AppsCore;
 import com.mascitra.digphotoworks.R;
+import com.mascitra.digphotoworks.activities.Pemesanan;
+import com.mascitra.digphotoworks.activities.PemesananWedding;
 import com.mascitra.digphotoworks.activities.Transaksi;
 import com.mascitra.digphotoworks.models.Product;
 
@@ -72,11 +74,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ProductAdapter.ViewHolder holder, int position) {
-        Product item = productView.get(position);
+        final Product item = productView.get(position);
         TextView paket = holder.paket;
         TextView harga = holder.harga;
         TextView deskripsi = holder.deskripsi;
         ImageView imgDeskripsi = holder.imgDeskripsi;
+        Button btnPesan = holder.btnPesan;
         paket.setText(item.getName());
         harga.setText("Rp "+myFormatter.format(item.getPrice()));
         deskripsi.setText(item.getDetail());
@@ -86,6 +89,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 .build());
 
         Glide.with(context).load(glideUrl).into(imgDeskripsi);
+
+        btnPesan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                Bundle b = new Bundle();
+                b.putParcelable("product", item);
+                b.putInt("tambahan", 0);
+                i.putExtras(b);
+                if (item.getCategoryId() == 3 || item.getCategoryId() == 4) {
+                    i.setClass(context, PemesananWedding.class);
+                } else {
+                    i.setClass(context, Pemesanan.class);
+                }
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
