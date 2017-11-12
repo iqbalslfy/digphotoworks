@@ -1,6 +1,7 @@
 package com.mascitra.digphotoworks.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,8 +59,12 @@ public class Gallery extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(Gallery.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
+                Intent i = new Intent();
+                Bundle b = new Bundle();
+                b.putString("image",imageAdapter.getItem(position));
+                i.putExtras(b);
+                i.setClass(Gallery.this, LoadImage.class);
+                startActivity(i);
             }
         });
         gridview.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -75,7 +80,7 @@ public class Gallery extends AppCompatActivity {
                         if (!(cek.size()>0 && cek.get(cek.size()-1).equals(endCursor))){
                             loading.setTitle("Loading");
                             loading.setMessage("Wait while loading...");
-                            loading.setCancelable(false); // disable dismiss by tapping outside of the dialog
+                            loading.setCancelable(false);
                             loading.show();
                             loadInsatgram(true);
                         }
