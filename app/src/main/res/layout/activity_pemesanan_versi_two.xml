@@ -61,16 +61,41 @@
                     android:layout_margin="5dp"
                     android:maxLength="12"/>
 
-                <TextView
+                <EditText
+                    android:id="@+id/et_tgl_pesan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/et_no_telp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/md_edit_text"
+                    android:editable="false"
+                    android:hint="12/12/2017"
+                    android:padding="10dp"
+
+                    />
+
+                <ImageButton
+                    android:id="@+id/ib_tgl"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/textView2"
+                    android:layout_alignEnd="@+id/et_no_telp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/circle"
+                    android:elevation="10dp"
+                    android:src="@drawable/ic_date" />
+
+                <TextView
+                    android:layout_below="@+id/et_tgl_pesan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Pilih waktu : "
                     android:layout_margin="5dp"
-                    android:background="@drawable/md_edit_text"/>
+                    android:background="@drawable/md_edit_text"
+                    android:id="@+id/textView2" />
                 <RadioGroup
-                    android:layout_below="@+id/et_no_telp"
+                    android:layout_below="@+id/ib_tgl"
                     android:id="@+id/rg_option"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
