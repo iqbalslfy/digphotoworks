@@ -60,6 +60,9 @@ public class Transaksi extends AppCompatActivity {
     @BindView(R.id.txt_hrg_tmbh_pp)
     TextView txtHrgTmbh;
 
+    @BindView(R.id.note)
+    TextView note;
+
     @BindView(R.id.btnMin)
     ImageButton btnMin;
 
@@ -97,15 +100,17 @@ public class Transaksi extends AppCompatActivity {
 
         product = bundle.getParcelable("product");
 
-        jmlPlus.setText(tambahan+"");
+        jmlPlus.setText(tambahan + "");
 
         tvpaket.setText(product.getName());
-        tvharga.setText("Rp "+myFormatter.format(product.getPrice()));
-        tvhargaAwal.setText("Rp "+myFormatter.format(product.getPrice()) );
-        tvHasilFinal.setText("Rp "+myFormatter.format(product.getPrice() ));
-        tvHasilFinal2.setText("Rp "+myFormatter.format(product.getPrice() ));
+        tvharga.setText("Rp " + myFormatter.format(product.getPrice()));
+        tvhargaAwal.setText("Rp " + myFormatter.format(product.getPrice()));
+        tvHasilFinal.setText("Rp " + myFormatter.format(product.getPrice()));
+        tvHasilFinal2.setText("Rp " + myFormatter.format(product.getPrice()));
         hargaTambah = product.getPricePlus();
         tvdetail.setText(product.getDetail());
+        note.setText("Penambahan orang akan dikenakan biaya penambahan sebesar " +
+                myFormatter.format(product.getPricePlus()));
         String url = AppsCore.BASE_IMAGE + product.getImage();
 
         GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
@@ -114,20 +119,20 @@ public class Transaksi extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (product.getCategoryId() != 1){
+        if (product.getCategoryId() != 1) {
             hidden();
         }
 
     }
 
-    private void hidden()
-    {
+    private void hidden() {
         btnMin.setVisibility(View.GONE);
         btnPlus.setVisibility(View.GONE);
         jmlPlus.setVisibility(View.GONE);
         txtJumlahTambahanOrg.setVisibility(View.GONE);
         tvTambahan.setVisibility(View.GONE);
         txtHrgTmbh.setVisibility(View.GONE);
+        note.setVisibility(View.GONE);
     }
 
     @Override
@@ -157,10 +162,10 @@ public class Transaksi extends AppCompatActivity {
     }
 
     public void updateView() {
-        jmlPlus.setText(tambahan+"");
-        tvTambahan.setText("Rp "+myFormatter.format((hargaTambah * tambahan) ));
-        tvHasilFinal.setText("Rp "+myFormatter.format((product.getPrice() + (hargaTambah * tambahan)) ));
-        tvHasilFinal2.setText("Rp "+myFormatter.format((product.getPrice() + (hargaTambah * tambahan)) ));
+        jmlPlus.setText(tambahan + "");
+        tvTambahan.setText("Rp " + myFormatter.format((hargaTambah * tambahan)));
+        tvHasilFinal.setText("Rp " + myFormatter.format((product.getPrice() + (hargaTambah * tambahan))));
+        tvHasilFinal2.setText("Rp " + myFormatter.format((product.getPrice() + (hargaTambah * tambahan))));
     }
 
     @OnClick(R.id.btnSubmit)
@@ -168,18 +173,18 @@ public class Transaksi extends AppCompatActivity {
         Intent i = new Intent();
         Bundle b = new Bundle();
         b.putParcelable("product", product);
-        b.putInt("tambahan",tambahan);
+        b.putInt("tambahan", tambahan);
         i.putExtras(b);
-        if (product.getCategoryId() == 3 || product.getCategoryId() == 4){
+        if (product.getCategoryId() == 3 || product.getCategoryId() == 4) {
             i.setClass(this, PemesananWedding.class);
-        }else{
+        } else {
             i.setClass(this, Pemesanan.class);
         }
         startActivity(i);
     }
 
     @OnClick(R.id.card_p_one)
-    public void view(){
+    public void view() {
         startActivity(new Intent(getApplicationContext(), LoadImage.class));
     }
 
