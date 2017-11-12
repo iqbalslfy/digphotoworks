@@ -62,6 +62,7 @@ public class Gallery extends AppCompatActivity {
                 Intent i = new Intent();
                 Bundle b = new Bundle();
                 b.putString("image",imageAdapter.getItem(position));
+                b.putString("caption",imageAdapter.getCaption(position));
                 i.putExtras(b);
                 i.setClass(Gallery.this, LoadImage.class);
                 startActivity(i);
@@ -111,7 +112,9 @@ public class Gallery extends AppCompatActivity {
                     List<Edge> edges = response.body().getData().getUser().getEdgeOwnerToTimelineMedia().getEdges();
                     for (int i = 0; i < edges.size();i++){
                         String thumbnail_src = edges.get(i).getNode().getThumbnailSrc();
+                        String caption = edges.get(i).getNode().getEdgeMediaToCaption().getEdges().get(0).getNode().getText();
                         imageAdapter.addImage(thumbnail_src);
+                        imageAdapter.addCaption(caption);
                     }
                     Log.d("isine",imageAdapter.getCount()+"");
                     gridview.invalidateViews();
