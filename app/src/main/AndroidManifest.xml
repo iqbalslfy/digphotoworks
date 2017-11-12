@@ -30,9 +30,6 @@
         <activity android:name=".activities.About" />
         <activity android:name=".activities.PromoActivity" />
         <activity android:name=".activities.Preweding" />
-        <activity
-            android:name=".activities.Pencarian"
-            android:theme="@style/NoActionBar." />
         <activity android:name=".activities.MakeUp" />
         <activity android:name=".activities.Weding" />
         <activity android:name=".activities.Video" />
