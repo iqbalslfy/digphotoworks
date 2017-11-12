@@ -1,10 +1,14 @@
 package com.mascitra.digphotoworks.activities;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -52,6 +56,9 @@ public class PemesananWedding extends AppCompatActivity {
     @BindView(R.id.tv_total_biaya)
     TextView  tvTotalBiaya;
 
+    @BindView(R.id.et_tgl_pesan)
+    EditText edTgl;
+
     Product product;
 
     DecimalFormat myFormatter;
@@ -60,6 +67,12 @@ public class PemesananWedding extends AppCompatActivity {
     RadioGroup radioGroup;
 
     RadioButton radioButton;
+
+    int tahun;
+    int bulan;
+    int hari;
+
+    static final int DIALOG_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,19 +92,42 @@ public class PemesananWedding extends AppCompatActivity {
         tvHrgStandart.setText("Rp "+myFormatter.format(product.getPrice()));
         tvTotalBiaya.setText("Rp "+myFormatter.format(product.getPrice()));
 
+        final Calendar cal = Calendar.getInstance();
+        tahun = cal.get(Calendar.YEAR);
+        bulan = cal.get(Calendar.MONTH);
+        hari = cal.get(Calendar.DAY_OF_MONTH);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_ID){
+            return new DatePickerDialog(this, dpickerlistener, tahun,bulan,hari);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener dpickerlistener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            tahun = year;
+            bulan = month + 1;
+            hari = day;
+
+            edTgl.setText(tahun+"/"+bulan+"/"+hari);
+        }
+    };
+
     @OnClick(R.id.btnSubmit)
     public void submit() {
         int selectedId = radioGroup.getCheckedRadioButtonId();
-
+        String tgl = tahun+"-"+bulan+"-"+hari;
         radioButton = (RadioButton) findViewById(selectedId);
 
         Call<BaseResponse<OrderWResponse>> call;
         call = RetrofitApi.getInstance().getApiService("").orderW(edNama.getText().toString(),edTelp.getText().toString(),
-                radioButton.getText().toString(), (product.getPrice()+product.getPricePlus()),product.getId());
+                radioButton.getText().toString(),tgl, (product.getPrice()+product.getPricePlus()),product.getId());
         call.enqueue(new Callback<BaseResponse<OrderWResponse>>() {
             @Override
             public void onResponse(Call<BaseResponse<OrderWResponse>> call, Response<BaseResponse<OrderWResponse>> response) {
@@ -115,5 +151,10 @@ public class PemesananWedding extends AppCompatActivity {
                 Toast.makeText(PemesananWedding.this, AppsCore.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @OnClick(R.id.ib_tgl)
+    public void tgl(){
+        showDialog(DIALOG_ID);
     }
 }
