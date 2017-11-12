@@ -45,6 +45,9 @@ public class Transaksi extends AppCompatActivity {
     @BindView(R.id.txt_hasil_final_pp)
     TextView tvHasilFinal;
 
+    @BindView(R.id.vl_jumlah_pesan)
+    TextView tvJmlOrg;
+
     @BindView(R.id.txt_harga_final_bawah_pp)
     TextView tvHasilFinal2;
 
@@ -109,6 +112,7 @@ public class Transaksi extends AppCompatActivity {
         tvHasilFinal2.setText("Rp " + myFormatter.format(product.getPrice()));
         hargaTambah = product.getPricePlus();
         tvdetail.setText(product.getDetail());
+        tvJmlOrg.setText(product.getPeople()+" Orang");
         note.setText("Penambahan orang akan dikenakan biaya penambahan sebesar " +
                 myFormatter.format(product.getPricePlus()));
         String url = AppsCore.BASE_IMAGE + product.getImage();
