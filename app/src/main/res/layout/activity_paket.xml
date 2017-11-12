@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cari paket favorit anda.."
-                android:focusable="true"
+                android:focusable="false"
                 android:background="@drawable/md_edit_text"
                 android:padding="10dp"
                 />
