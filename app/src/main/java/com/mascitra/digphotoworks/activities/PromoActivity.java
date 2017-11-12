@@ -45,13 +45,6 @@ public class PromoActivity extends AppCompatActivity {
         recyclerView.setAdapter(promoAdapter);
 
         loadPromo();
-        /*text = (EditText)findViewById(R.id.txtCariPromo);
-        text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Pencarian.class));
-            }
-        });*/
     }
 
     public void loadPromo() {
