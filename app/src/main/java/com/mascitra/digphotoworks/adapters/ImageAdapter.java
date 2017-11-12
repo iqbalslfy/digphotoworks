@@ -24,6 +24,7 @@ public class ImageAdapter extends BaseAdapter{
     private final LayoutInflater mInflater;
 
     private ArrayList<String> ig = new ArrayList<>();
+    private ArrayList<String> caption = new ArrayList<>();
 
     public ImageAdapter(Context c) {
         mContext = c;
@@ -34,8 +35,12 @@ public class ImageAdapter extends BaseAdapter{
         return this.ig.size();
     }
 
-    public Object getItem(int position) {
-        return null;
+    public String getItem(int position) {
+        return ig.get(position);
+    }
+
+    public String getCaption(int position) {
+        return caption.get(position);
     }
 
     public long getItemId(int position) {
@@ -61,6 +66,9 @@ public class ImageAdapter extends BaseAdapter{
 
     public void addImage(String url){
         this.ig.add(url);
+    }
+    public void addCaption(String caption){
+        this.caption.add(caption);
     }
 
 }
