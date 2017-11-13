@@ -161,10 +161,11 @@
                     android:id="@+id/tv_isi_paket_p"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Contoh Nama Paket"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/tv_nm_paket_p"
                     android:padding="5dp"
-                    android:layout_margin="5dp"
-                    android:layout_below="@+id/tv_nm_paket_p"/>
+                    android:text="Contoh Nama Paket"
+                    android:layout_margin="5dp"/>
 
                 <TextView
                     android:id="@+id/tv_jml_tambahan"
@@ -175,7 +176,8 @@
                     android:text="Jumlah Tambahan"
                     android:layout_below="@+id/tv_isi_paket_p"
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tv_isi_jml_p"
@@ -187,7 +189,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="5dp"
-                    android:text="0" />
+                    android:text="0"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -197,7 +200,8 @@
                     android:layout_margin="5dp"
                     android:layout_below="@+id/tv_jml_tambahan"
                     android:layout_toRightOf="@+id/tv_isi_jml_p"
-                    android:id="@+id/textView" />
+                    android:id="@+id/textView"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tv_hrg_standart"
@@ -205,8 +209,8 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:text="Harga Standart"
-                    android:layout_below="@+id/tv_isi_jml_p"
+                    android:text="Harga Paket"
+                    android:layout_below="@+id/tv_isi_paket_p"
                     android:textSize="20dp"
                     android:textStyle="bold"/>
 
@@ -216,9 +220,7 @@
                     android:layout_height="wrap_content"
                     android:text="1,000,000"
                     android:padding="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
+                   android:layout_margin="5dp"
                     android:layout_below="@+id/tv_hrg_standart"
                     />
 
@@ -231,7 +233,8 @@
                     android:text="Tambahan"
                     android:layout_below="@+id/tv_isi_hrg_standart"
                     android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/rpt"
@@ -243,6 +246,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_below="@+id/tv_hrg_tambahan"
+                    android:visibility="gone"
                     />
 
                 <TextView
@@ -255,7 +259,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_below="@+id/tv_hrg_tambahan"
-                    android:layout_toRightOf="@+id/rpt"/>
+                    android:layout_toRightOf="@+id/rpt"
+                    android:visibility="gone"/>
 
                 <View
                     android:id="@+id/lines3"
