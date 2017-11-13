@@ -11,4 +11,12 @@ public class Node_ {
     @SerializedName("text")
     @Expose
     public String text;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }
