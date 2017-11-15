@@ -187,10 +187,4 @@ public class Transaksi extends AppCompatActivity {
         startActivity(i);
     }
 
-    @OnClick(R.id.card_p_one)
-    public void view() {
-        startActivity(new Intent(getApplicationContext(), LoadImage.class));
-    }
-
-
 }
