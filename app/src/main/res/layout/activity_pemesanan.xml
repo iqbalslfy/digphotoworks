@@ -150,10 +150,30 @@
                     android:text="Contoh Nama Paket" />
 
                 <TextView
-                    android:id="@+id/tv_jml_tambahan"
+                    android:id="@+id/tv_hrg_standart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_isi_paket_p"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:text="Harga Paket"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_isi_hrg_standart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_hrg_standart"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:text="1,000,000" />
+
+                <TextView
+                    android:id="@+id/tv_jml_tambahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_isi_hrg_standart"
                     android:layout_margin="5dp"
                     android:padding="5dp"
                     android:text="Jumlah Tambahan"
@@ -164,6 +184,7 @@
                     android:id="@+id/tv_isi_jml_p"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_jml_tambahan"
                     android:layout_alignBaseline="@+id/textView"
                     android:layout_alignBottom="@+id/textView"
                     android:layout_alignParentStart="true"
@@ -180,35 +201,16 @@
                     android:layout_margin="5dp"
                     android:layout_toRightOf="@+id/tv_isi_jml_p"
                     android:padding="5dp"
-                    android:text="Orang" />
+                    android:text="Orang"
+                    />
 
-                <TextView
-                    android:id="@+id/tv_hrg_standart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_isi_jml_p"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:text="Harga Standart"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_isi_hrg_standart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_hrg_standart"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:padding="5dp"
-                    android:text="1,000,000" />
 
                 <TextView
                     android:id="@+id/tv_hrg_tambahan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_isi_hrg_standart"
+                    android:layout_below="@+id/tv_isi_jml_p"
                     android:layout_margin="5dp"
                     android:padding="5dp"
                     android:text="Tambahan"
@@ -220,12 +222,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_hrg_tambahan"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@+id/rpt"
+                    android:layout_margin="5dp"
                     android:padding="5dp"
-                    android:text="1,000,000" />
+                    android:text="1,000,000"
+                    />
 
                 <View
                     android:id="@+id/lines3"
