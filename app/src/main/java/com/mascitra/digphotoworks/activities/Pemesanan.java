@@ -98,13 +98,13 @@ public class Pemesanan extends AppCompatActivity  {
         tvHrgTambahan.setText("Rp "+myFormatter.format(product.getPricePlus()*tambahan));
         tvTotalBiaya.setText("Rp "+myFormatter.format((product.getPrice()+(product.getPricePlus()*tambahan))));
 
+
         final Calendar cal = Calendar.getInstance();
         tahun = cal.get(Calendar.YEAR);
         bulan = cal.get(Calendar.MONTH);
         hari = cal.get(Calendar.DAY_OF_MONTH);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
 
