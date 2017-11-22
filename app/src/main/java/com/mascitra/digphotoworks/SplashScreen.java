@@ -31,12 +31,7 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(i);
 
                 //jeda selesai Splashscreen
-                this.finish();
-            }
-
-            private void finish() {
-                // TODO Auto-generated method stub
-
+                SplashScreen.this.finish();
             }
         }, splashInterval);
 

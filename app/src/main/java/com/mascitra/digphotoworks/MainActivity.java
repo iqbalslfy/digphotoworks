@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.logout:
-                Toast.makeText(this, "Action Logout Work", Toast.LENGTH_SHORT).show();
+
+                MainActivity.this.finish();
                 break;
         }
         return false;
