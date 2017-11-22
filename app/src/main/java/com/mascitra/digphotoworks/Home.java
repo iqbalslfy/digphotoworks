@@ -63,7 +63,7 @@ public class Home extends Fragment implements View.OnClickListener {
         recyclerView.setHasFixedSize(true);
         gridLayoutManager = new GridLayoutManager(getActivity(),3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapter = new RecyclerViewAdapter(data_list);
+        adapter = new RecyclerViewAdapter(getActivity(), data_list);
         recyclerView.setAdapter(adapter);
 
 
@@ -178,7 +178,7 @@ private void initData(){
     data_list.add(new Data("Make Up & Wardrobe", R.drawable.makeup));
     data_list.add(new Data("Package", R.drawable.prewed));
     data_list.add(new Data("Prewedding", R.drawable.clock));
-    data_list.add(new Data("wedding", R.drawable.weding));
+    data_list.add(new Data("Wedding", R.drawable.weding));
     data_list.add(new Data("Gallery", R.drawable.gallery));
     data_list.add(new Data("Video", R.drawable.video));
     data_list.add(new Data("Tentang Kami", R.drawable.tentang));
