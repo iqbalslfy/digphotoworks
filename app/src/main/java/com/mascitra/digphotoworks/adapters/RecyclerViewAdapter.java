@@ -70,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MenuHolder>{
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listData.get(position).getJudul().equals("Promo Saat ini")){
+                if (listData.get(position).getJudul().equals("Promo Saat Ini")){
                     context.startActivity(new Intent(context, PromoActivity.class));
                 }
 
