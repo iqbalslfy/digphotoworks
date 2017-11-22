@@ -44,6 +44,7 @@ public class Gallery extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         cek = new ArrayList<>();
+
         loading = new ProgressDialog(this);
         imageAdapter = new ImageAdapter(this);
         ButterKnife.bind(this);
@@ -68,6 +69,7 @@ public class Gallery extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         gridview.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -116,6 +118,7 @@ public class Gallery extends AppCompatActivity {
                         imageAdapter.addImage(thumbnail_src);
                         imageAdapter.addCaption(caption);
                     }
+
                     Log.d("isine",imageAdapter.getCount()+"");
                     gridview.invalidateViews();
                     loading.dismiss();

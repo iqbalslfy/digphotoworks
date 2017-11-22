@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -58,15 +57,6 @@ public class Pemesanan extends AppCompatActivity  {
     @BindView(R.id.tv_isi_jml_p)
     TextView  tvJmlTmbahan;
 
-    @BindView(R.id.tv_jml_tambahan)
-    TextView  tvCptTambahan;
-
-    @BindView(R.id.textView)
-    TextView  textView;
-
-    @BindView(R.id.tv_hrg_tambahan)
-    TextView  captTambahan;
-
     @BindView(R.id.tv_isi_hrg_standart)
     TextView  tvHrgStandart;
 
@@ -84,15 +74,6 @@ public class Pemesanan extends AppCompatActivity  {
     int jam,menit;
     static final int DIALOG_ID = 0;
     static final int DIALOG_ID1 = 1;
-
-    public void hide()
-    {
-        tvHrgTambahan.setVisibility(View.GONE);
-        captTambahan.setVisibility(View.GONE);
-        textView.setVisibility(View.GONE);
-        tvJmlTmbahan.setVisibility(View.GONE);
-        tvCptTambahan.setVisibility(View.GONE);
-    }
 
     DecimalFormat myFormatter;
 
@@ -117,9 +98,6 @@ public class Pemesanan extends AppCompatActivity  {
         tvHrgTambahan.setText("Rp "+myFormatter.format(product.getPricePlus()*tambahan));
         tvTotalBiaya.setText("Rp "+myFormatter.format((product.getPrice()+(product.getPricePlus()*tambahan))));
 
-        if (product.getCategoryId() != 1){
-            this.hide();
-        }
 
         final Calendar cal = Calendar.getInstance();
         tahun = cal.get(Calendar.YEAR);

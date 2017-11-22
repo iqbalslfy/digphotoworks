@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3498db</color>
-    <color name="colorPrimaryDark">#2980b9</color>
+    <color name="colorPrimary">#F62459</color>
+    <color name="colorPrimaryDark">#F62459</color>
     <color name="colorAccent">#FF4081</color>
     <color name="padding_slide">#00000000</color>
     <color name="chambray">#3A539B</color>

@@ -59,19 +59,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/konten"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:textAlignment="center"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero nulla, hendrerit eu urna eget, dapibus dapibus mauris. Donec nec augue non est vehicula accumsan in at velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin et blandit turpis. Etiam commodo nulla mauris, sit amet bibendum eros dignissim id. Suspendisse ac mollis lacus. Quisque ante ex, pretium aliquam rutrum id, tempus venenatis enim. Etiam finibus purus sed malesuada scelerisque. Fusce dignissim maximus feugiat. Quisque imperdiet libero non purus luctus congue. Vestibulum finibus hendrerit massa quis molestie. Aliquam tincidunt at lectus et commodo. Nullam sit amet mi rhoncus, eleifend felis vel, tempus velit. Ut et elit sit amet magna consectetur dictum a sed turpis. Duis nec sem eget nisi porta eleifend nec eget elit. Vivamus sollicitudin porta porttitor.
-
-Duis euismod sodales nibh in convallis. Sed dolor augue, pretium vitae sem sit amet, malesuada efficitur quam. Sed non tellus augue. Curabitur elementum quis neque id hendrerit. Duis interdum, dui non interdum mattis, nunc dolor ullamcorper eros, sed tempus ex lectus quis libero. Aenean et eros ornare, vestibulum augue euismod, porta dolor. Donec massa tellus, tempus vitae arcu vitae, interdum placerat sem. Vivamus nec odio quis nulla eleifend bibendum. Sed semper, mi in cursus congue, enim nulla condimentum eros, nec lacinia arcu ex eu massa. Aliquam erat volutpat. Vestibulum dignissim sapien eu ligula interdum, in feugiat lectus ornare. Nam eu ullamcorper tellus. Mauris sed quam eget velit tempor scelerisque non ut lacus.
-
-Donec suscipit eros diam, id euismod magna convallis sit amet. Cras bibendum vitae turpis vitae luctus. Maecenas varius vestibulum felis, nec malesuada lectus tempus id. Mauris et tempor lectus, vel dignissim ipsum. Donec dapibus velit vitae risus blandit tristique. Suspendisse in eros rutrum, dignissim lorem sit amet, aliquet quam. Phasellus volutpat massa est, nec hendrerit felis lobortis sed. Nulla volutpat dictum quam ac mollis. Cras eu vehicula augue. Vestibulum et sapien a enim fermentum porta.
-
-Sed efficitur diam sit amet pellentesque sagittis. In massa nisl, elementum eu mollis vitae, ornare sed odio. Nulla ac quam faucibus, vulputate lectus a, varius massa. Sed sit amet varius sem. Sed sed urna vel urna dapibus lobortis. Donec ultricies in ex eu egestas. Duis mollis libero id lorem lobortis, ac pulvinar est venenatis. Fusce sodales ante arcu, sit amet varius libero tincidunt in. Sed eleifend efficitur laoreet. Nulla tincidunt enim consequat, convallis ante a, ultrices dui. Phasellus hendrerit risus vel varius malesuada. Morbi sollicitudin sem in diam imperdiet blandit. Vestibulum efficitur nunc ac nibh luctus, ac facilisis risus aliquet.
-
-Vivamus sem massa, rutrum vel turpis sed, volutpat elementum nisi. Nulla at purus tellus. Nam sit amet feugiat odio. Integer bibendum, diam vitae cursus aliquet, lectus augue placerat nunc, ut dapibus justo mi eget nibh. Duis at urna ac arcu interdum consectetur at sit amet purus. Cras viverra sed eros vitae blandit. Phasellus convallis consequat metus non lacinia. Suspendisse potenti. Vestibulum non consectetur est. Lorem ipsum dolor sit amet, consectetur adipiscing elit."/>
+                    />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </RelativeLayout>
