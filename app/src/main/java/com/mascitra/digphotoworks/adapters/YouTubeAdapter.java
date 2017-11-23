@@ -62,7 +62,7 @@ public class YouTubeAdapter extends RecyclerView.Adapter<YouTubeAdapter.ViewHold
         Item item = itemList.get(position);
         TextView txtTitle = holder.txtTitle;
         ImageView imgPreview = holder.imgPreview;
-        txtTitle.setText(item.getSnippet().getDescription());
+        txtTitle.setText(item.getSnippet().getTitle());
         String url = item.getSnippet().getThumbnails().get_default().getUrl();
 
         GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
