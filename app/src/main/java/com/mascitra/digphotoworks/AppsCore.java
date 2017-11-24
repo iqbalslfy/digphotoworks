@@ -7,8 +7,8 @@ import android.app.Application;
  */
 
 public class AppsCore extends Application{
-    public static final String BASE_URL = "http://http://app.digphotoworks.com/";
-    public static final String BASE_IMAGE = "http://http://app.digphotoworks.com/images/";
+    public static final String BASE_URL = "http://app.digphotoworks.com/";
+    public static final String BASE_IMAGE = "http://app.digphotoworks.com/images/";
     public static final String INSTAGRAM = "https://www.instagram.com/graphql/query/";
     public static final String ERROR_NETWORK = "Error. Please check your internet connection";
     public static final String YOUTUBE_URL = "https://www.googleapis.com/youtube/v3/";
