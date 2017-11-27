@@ -186,41 +186,41 @@ private void initData(){
 
     @Override
     public void onClick(View view) {
-        if (view == photostudio){
-            startActivity(new Intent(getActivity(), PhotoStudio.class));
-        }
-
-        if (view == paket){
-            startActivity(new Intent(getActivity(), Paket.class));
-        }
-
-        if (view == gallery){
-            startActivity(new Intent(getActivity(), Gallery.class));
-        }
-
-        if (view == about){
-            startActivity(new Intent(getActivity(), About.class));
-        }
-
-        if (view == promo){
-            startActivity(new Intent(getActivity(), PromoActivity.class));
-        }
-
-        if (view == preweding){
-            startActivity(new Intent(getActivity(), Preweding.class));
-        }
-
-        if (view == weding) {
-            startActivity(new Intent(getActivity(), Weding.class));
-        }
-
-        if (view == video) {
-            startActivity(new Intent(getActivity(), Video.class));
-        }
-
-        if (view == make_up) {
-            startActivity(new Intent(getActivity(), MakeUp.class));
-        }
+//        if (view == photostudio){
+//            startActivity(new Intent(getActivity(), PhotoStudio.class));
+//        }
+//
+//        if (view == paket){
+//            startActivity(new Intent(getActivity(), Paket.class));
+//        }
+//
+//        if (view == gallery){
+//            startActivity(new Intent(getActivity(), Gallery.class));
+//        }
+//
+//        if (view == about){
+//            startActivity(new Intent(getActivity(), About.class));
+//        }
+//
+//        if (view == promo){
+//            startActivity(new Intent(getActivity(), PromoActivity.class));
+//        }
+//
+//        if (view == preweding){
+//            startActivity(new Intent(getActivity(), Preweding.class));
+//        }
+//
+//        if (view == weding) {
+//            startActivity(new Intent(getActivity(), Weding.class));
+//        }
+//
+//        if (view == video) {
+//            startActivity(new Intent(getActivity(), Video.class));
+//        }
+//
+//        if (view == make_up) {
+//            startActivity(new Intent(getActivity(), MakeUp.class));
+//        }
 
     }
 }

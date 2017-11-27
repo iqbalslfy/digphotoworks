@@ -3,12 +3,14 @@ package com.mascitra.digphotoworks.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.activities.About;
@@ -67,11 +69,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MenuHolder>{
         holder.imageView.setImageResource(listData.get(position).getImageID());
         holder.textView.setText(listData.get(position).getJudul());
 
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.imageView.equals(R.drawable.baru)){
+                    Toast.makeText(context, "Oke", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listData.get(position).getJudul().equals("Promo Saat Ini")){
                     context.startActivity(new Intent(context, PromoActivity.class));
+
                 }
 
                 if (listData.get(position).getJudul().equals("Photo Studio")){
