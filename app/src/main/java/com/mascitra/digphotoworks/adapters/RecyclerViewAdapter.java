@@ -31,22 +31,7 @@ import java.util.List;
  * Created by SONY on 22/11/2017.
  */
 
-class MenuHolder extends RecyclerView.ViewHolder{
-    public ImageView imageView;
-    public TextView textView;
-    public LinearLayout layout;
-
-    public MenuHolder(View itemView) {
-        super(itemView);
-
-        imageView = itemView.findViewById(R.id.imageMenu);
-        textView = itemView.findViewById(R.id.namaJudul);
-        layout = itemView.findViewById(R.id.layout_item);
-
-    }
-}
-
-public class RecyclerViewAdapter extends RecyclerView.Adapter<MenuHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MenuHolder>{
     private Context context;
     private List<Data> listData = new ArrayList<Data>();
 
@@ -119,6 +104,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MenuHolder>{
                 }
             }
         });
+    }
+
+    class MenuHolder extends RecyclerView.ViewHolder{
+        public ImageView imageView;
+        public TextView textView;
+        public LinearLayout layout;
+
+        public MenuHolder(View itemView) {
+            super(itemView);
+
+            imageView = itemView.findViewById(R.id.imageMenu);
+            textView = itemView.findViewById(R.id.namaJudul);
+            layout = itemView.findViewById(R.id.layout_item);
+
+        }
     }
 
     @Override
