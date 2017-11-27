@@ -57,8 +57,40 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.imageView.equals(R.drawable.baru)){
-                    Toast.makeText(context, "Oke", Toast.LENGTH_SHORT).show();
+                if (position == 0){
+                    context.startActivity(new Intent(context, PromoActivity.class));
+                }
+
+                if (position == 1){
+                    context.startActivity(new Intent(context, PhotoStudio.class));
+                }
+
+                if (position == 2){
+                    context.startActivity(new Intent(context, MakeUp.class));
+                }
+
+                if (position == 3){
+                    context.startActivity(new Intent(context, Paket.class));
+                }
+
+                if (position == 4){
+                    context.startActivity(new Intent(context, Preweding.class));
+                }
+
+                if (position == 5){
+                    context.startActivity(new Intent(context, Weding.class));
+                }
+
+                if (position == 6){
+                    context.startActivity(new Intent(context, Gallery.class));
+                }
+
+                if (position == 7){
+                    context.startActivity(new Intent(context, Video.class));
+                }
+
+                if (position == 8){
+                    context.startActivity(new Intent(context, About.class));
                 }
             }
         });
@@ -66,40 +98,39 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listData.get(position).getJudul().equals("Promo Saat Ini")){
+                if (position == 0){
                     context.startActivity(new Intent(context, PromoActivity.class));
-
                 }
 
-                if (listData.get(position).getJudul().equals("Photo Studio")){
+                if (position == 1){
                     context.startActivity(new Intent(context, PhotoStudio.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Make Up & Wardrobe")){
+                if (position == 2){
                     context.startActivity(new Intent(context, MakeUp.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Package")){
+                if (position == 3){
                     context.startActivity(new Intent(context, Paket.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Prewedding")){
+                if (position == 4){
                     context.startActivity(new Intent(context, Preweding.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Wedding")){
+                if (position == 5){
                     context.startActivity(new Intent(context, Weding.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Gallery")){
+                if (position == 6){
                     context.startActivity(new Intent(context, Gallery.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Video")){
+                if (position == 7){
                     context.startActivity(new Intent(context, Video.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Tentang Kami")){
+                if (position == 8){
                     context.startActivity(new Intent(context, About.class));
                 }
             }
