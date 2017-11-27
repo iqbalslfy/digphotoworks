@@ -3,12 +3,14 @@ package com.mascitra.digphotoworks.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mascitra.digphotoworks.R;
 import com.mascitra.digphotoworks.activities.About;
@@ -52,42 +54,83 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.imageView.setImageResource(listData.get(position).getImageID());
         holder.textView.setText(listData.get(position).getJudul());
 
-        holder.layout.setOnClickListener(new View.OnClickListener() {
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listData.get(position).getJudul().equals("Promo Saat Ini")){
+                if (position == 0){
                     context.startActivity(new Intent(context, PromoActivity.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Photo Studio")){
+                if (position == 1){
                     context.startActivity(new Intent(context, PhotoStudio.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Make Up & Wardrobe")){
+                if (position == 2){
                     context.startActivity(new Intent(context, MakeUp.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Package")){
+                if (position == 3){
                     context.startActivity(new Intent(context, Paket.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Prewedding")){
+                if (position == 4){
                     context.startActivity(new Intent(context, Preweding.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Wedding")){
+                if (position == 5){
                     context.startActivity(new Intent(context, Weding.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Gallery")){
+                if (position == 6){
                     context.startActivity(new Intent(context, Gallery.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Video")){
+                if (position == 7){
                     context.startActivity(new Intent(context, Video.class));
                 }
 
-                if (listData.get(position).getJudul().equals("Tentang Kami")){
+                if (position == 8){
+                    context.startActivity(new Intent(context, About.class));
+                }
+            }
+        });
+
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position == 0){
+                    context.startActivity(new Intent(context, PromoActivity.class));
+                }
+
+                if (position == 1){
+                    context.startActivity(new Intent(context, PhotoStudio.class));
+                }
+
+                if (position == 2){
+                    context.startActivity(new Intent(context, MakeUp.class));
+                }
+
+                if (position == 3){
+                    context.startActivity(new Intent(context, Paket.class));
+                }
+
+                if (position == 4){
+                    context.startActivity(new Intent(context, Preweding.class));
+                }
+
+                if (position == 5){
+                    context.startActivity(new Intent(context, Weding.class));
+                }
+
+                if (position == 6){
+                    context.startActivity(new Intent(context, Gallery.class));
+                }
+
+                if (position == 7){
+                    context.startActivity(new Intent(context, Video.class));
+                }
+
+                if (position == 8){
                     context.startActivity(new Intent(context, About.class));
                 }
             }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     android:id="@+id/layout_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,7 +10,7 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:elevation="3dp"
@@ -19,19 +20,19 @@
 
         <LinearLayout
             android:id="@+id/relatifLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageMenu"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clickable="true"
                 android:scaleType="centerInside"
                 android:src="@drawable/camera"
-                android:padding="10dp"/>
+                android:paddingTop="5dp"
+                />
 
             <TextView
                 android:id="@+id/namaJudul"
@@ -44,7 +45,8 @@
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:typeface="sans"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:padding="5dp"/>
 
 
 
