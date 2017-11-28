@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/digphotoworks.iml" filepath="$PROJECT_DIR$/digphotoworks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/digphotoworks.iml" filepath="$PROJECT_DIR$/.idea/digphotoworks.iml" />
+      <module fileurl="file://C:\Users\SONY\Documents\Android_Project\digphotoworks\digphotoworks.iml" filepath="C:\Users\SONY\Documents\Android_Project\digphotoworks\digphotoworks.iml" />
     </modules>
   </component>
 </project>

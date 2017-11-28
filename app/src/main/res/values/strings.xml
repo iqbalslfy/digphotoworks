@@ -7,4 +7,5 @@
     <string name="title_activity_pemesanan">Pemesanan</string>
     <string name="title_activity_play">PlayActivity</string>
     <string name="title_activity_pemesanan_wedding">Pemesanan</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
