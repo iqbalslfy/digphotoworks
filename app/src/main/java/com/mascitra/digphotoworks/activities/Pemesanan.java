@@ -160,7 +160,10 @@ public class Pemesanan extends AppCompatActivity  {
         public void onTimeSet(TimePicker timePicker, int hour, int minute) {
             jam = hour;
             menit = minute;
-            edJam.setText(jam+":"+menit);
+            String showTime = "";
+            showTime += (jam < 10)?"0"+jam+":":jam+":";
+            showTime += (menit < 10)?"0"+menit:menit+"";
+            edJam.setText(showTime);
         }
     };
 
