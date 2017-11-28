@@ -17,13 +17,14 @@ import android.widget.TextView;
 import com.mascitra.digphotoworks.activities.MapsActivity;
 
 public class About extends Fragment implements View.OnClickListener {
-    TextView maps;
+    ImageView maps;
+    TextView textView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about,container,false);
-        TextView textView = view.findViewById(R.id.konten);
-        maps = view.findViewById(R.id.textDiG);
+        textView = view.findViewById(R.id.konten);
+        maps = view.findViewById(R.id.mapView);
         maps.setOnClickListener(this);
         textView.setText("Saya Hardiyan Digwiyono (Jember). Saya & team akan mengambil sisi terbaik Anda dalam bingkai foto. Hubungi DiG: 081357772570 | 580C7A93");
         return view;

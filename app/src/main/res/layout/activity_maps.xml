@@ -1,8 +1,53 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mascitra.digphotoworks.activities.MapsActivity" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.mascitra.digphotoworks.activities.MapsActivity"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_zoom_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="26dp"
+        android:elevation="6dp"
+        android:src="@drawable/ic_zoom_out"
+        app:backgroundTint="@color/white"
+        app:fabSize="normal"
+        app:rippleColor="@color/lines" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_zoom_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/fab_zoom_out"
+        android:layout_below="@+id/fab_zoom_out"
+        android:layout_marginTop="14dp"
+        android:elevation="6dp"
+        android:src="@drawable/ic_zoom_in"
+        app:backgroundTint="@color/white"
+        app:fabSize="normal"
+        app:rippleColor="@color/lines" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="Klik, dan Gunakan Rute Perjalanan"
+        android:textAlignment="center"/>
+</RelativeLayout>
+
+
