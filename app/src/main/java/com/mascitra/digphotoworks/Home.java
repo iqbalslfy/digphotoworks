@@ -175,7 +175,7 @@ public class Home extends Fragment implements View.OnClickListener {
 private void initData(){
     data_list.add(new Data("Promo Saat Ini" +"\n", R.drawable.baru));
     data_list.add(new Data("Photo Studio"+"\n", R.drawable.camera));
-    data_list.add(new Data("Make Up & Wardrobe", R.drawable.makeup));
+    data_list.add(new Data("Make Up "+"\n"+"& Wardrobe", R.drawable.makeup));
     data_list.add(new Data("Package", R.drawable.prewed));
     data_list.add(new Data("Prewedding", R.drawable.clock));
     data_list.add(new Data("Wedding", R.drawable.weding));
