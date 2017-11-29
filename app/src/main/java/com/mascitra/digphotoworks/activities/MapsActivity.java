@@ -51,14 +51,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng lokasi = new LatLng(-8.164830, 113.695434);
-        float zoom = 17.0f;
-        mMap.addMarker(new MarkerOptions().position(lokasi).title("Mascitra.com"));
+        LatLng lokasi = new LatLng(-8.1689596, 113.7117094);
+
+        float zoom = 17.5f;
+        mMap.addMarker(new MarkerOptions().position(lokasi).title("DiG Photoworks"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasi, zoom));
         mMap.animateCamera(CameraUpdateFactory.newLatLng(lokasi));
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
