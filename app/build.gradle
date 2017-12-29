@@ -7,8 +7,8 @@ android {
         applicationId "com.mascitra.digphotoworks"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -47,5 +47,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
-
+    implementation 'com.google.android.gms:play-services-maps:11.6.0'
 }

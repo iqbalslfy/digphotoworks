@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -66,6 +67,15 @@ public class Pemesanan extends AppCompatActivity  {
     @BindView(R.id.tv_total_biaya)
     TextView  tvTotalBiaya;
 
+    @BindView(R.id.tv_jml_tambahan)
+    TextView  tvCptTambahan;
+
+    @BindView(R.id.textView)
+    TextView  textView;
+
+    @BindView(R.id.tv_hrg_tambahan)
+    TextView  captTambahan;
+
     Product product;
 
     int tambahan;
@@ -104,7 +114,20 @@ public class Pemesanan extends AppCompatActivity  {
         bulan = cal.get(Calendar.MONTH);
         hari = cal.get(Calendar.DAY_OF_MONTH);
 
+        if (product.getCategoryId() != 1){
+            this.hide();
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void hide()
+    {
+        tvHrgTambahan.setVisibility(View.GONE);
+        captTambahan.setVisibility(View.GONE);
+        textView.setVisibility(View.GONE);
+        tvJmlTmbahan.setVisibility(View.GONE);
+        tvCptTambahan.setVisibility(View.GONE);
     }
 
 
@@ -137,7 +160,10 @@ public class Pemesanan extends AppCompatActivity  {
         public void onTimeSet(TimePicker timePicker, int hour, int minute) {
             jam = hour;
             menit = minute;
-            edJam.setText(jam+":"+menit);
+            String showTime = "";
+            showTime += (jam < 10)?"0"+jam+":":jam+":";
+            showTime += (menit < 10)?"0"+menit:menit+"";
+            edJam.setText(showTime);
         }
     };
 

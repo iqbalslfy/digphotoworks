@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dig"
-        android:text="Versi 1.2.8"
+        android:text="Versi 3.0"
         android:fontFamily="serif"
         android:textColor="@color/aice_blue"
         android:textAlignment="center"
