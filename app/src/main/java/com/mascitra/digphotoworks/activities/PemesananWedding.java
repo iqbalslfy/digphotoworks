@@ -141,7 +141,7 @@ public class PemesananWedding extends AppCompatActivity {
 
         Call<BaseResponse<OrderWResponse>> call;
         call = RetrofitApi.getInstance().getApiService("").orderW(edNama.getText().toString(),edTelp.getText().toString(),
-                radioButton.getText().toString(),tgl, (product.getPrice()+product.getPricePlus()),product.getId());
+                radioButton.getText().toString(),tgl, product.getPrice(),product.getId());
         call.enqueue(new Callback<BaseResponse<OrderWResponse>>() {
             @Override
             public void onResponse(Call<BaseResponse<OrderWResponse>> call, Response<BaseResponse<OrderWResponse>> response) {
